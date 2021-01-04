@@ -36,6 +36,7 @@ public class ExtentListeners implements ITestListener {
         String logText = "<b>" + "TEST CASE:- " + methodName.toUpperCase() + " PASSED" + "</b>";
         Markup m = MarkupHelper.createLabel(logText, ExtentColor.GREEN);
         testReport.get().pass(m);
+        testReport.get().info("Test parameters: " + Arrays.toString(result.getParameters()));
     }
 
     public void onTestFailure(ITestResult result) {
@@ -46,6 +47,7 @@ public class ExtentListeners implements ITestListener {
         String failureLogg = "TEST CASE FAILED";
         Markup m = MarkupHelper.createLabel(failureLogg, ExtentColor.RED);
         testReport.get().log(Status.FAIL, m);
+        testReport.get().info("Test parameters: " + Arrays.toString(result.getParameters()));
     }
 
     public void onTestSkipped(ITestResult result) {
@@ -53,6 +55,7 @@ public class ExtentListeners implements ITestListener {
         String logText = "<b>" + "Test Case:- " + methodName + " Skipped" + "</b>";
         Markup m = MarkupHelper.createLabel(logText, ExtentColor.ORANGE);
         testReport.get().skip(m);
+        testReport.get().info("Test parameters: " + Arrays.toString(result.getParameters()));
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {

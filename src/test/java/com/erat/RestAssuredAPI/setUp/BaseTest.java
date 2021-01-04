@@ -27,6 +27,18 @@ public class BaseTest {
         public int getValue(){ return statusCode;}
     }
 
+    public enum RequestTypes {
+        GET("get"),
+        POST("post"),
+        PUT("put"),
+        DELETE("delete");
+        private final String requestType;
+        RequestTypes(String requestType) {
+            this.requestType = requestType;
+        }
+        public String getValue(){ return requestType;}
+    }
+
     @BeforeSuite
     public void setUp() {
         try {
