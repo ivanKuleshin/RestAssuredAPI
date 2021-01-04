@@ -18,17 +18,12 @@ public class CreateCustomerTest extends BaseTest {
         Response response = createCustomerAPI.sendPostRequestToCreateCustomer(testDataMap);
 
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
-
-        String customerId = response.getBody().path("id").toString();
-
-        System.out.println("The ID of the new customer is: " + customerId);
-        System.out.println("The customer's address is: " + response.jsonPath().get("address.line1"));
-        System.out.println("The first customer's preferred locale is: " + response.jsonPath().get("preferred_locales[0]"));
-
-        System.out.println("The size of address's map is: " + response.jsonPath().getMap("address").size());
-        System.out.println("The size of main map is: " + response.jsonPath().getMap("$").size());
-        System.out.println("The customer's address is: " + response.jsonPath().getMap("address").get("line1"));
-        System.out.println("The size of preferred_locales list is: " + response.jsonPath().getList("preferred_locales").size());
+        assertThat(response.jsonPath().getString("address.city")).isEqualTo(testDataMap.get("address[city]"));
+        assertThat(response.jsonPath().getString("description")).isEqualTo(testDataMap.get("description"));
+        assertThat(response.jsonPath().getString("email")).isEqualTo(testDataMap.get("email"));
+        assertThat(response.jsonPath().getString("name")).isEqualTo(testDataMap.get("name"));
+        assertThat(response.jsonPath().getString("phone")).isEqualTo(testDataMap.get("phone"));
+        assertThat(response.jsonPath().getString("preferred_locales[0]")).isEqualTo(testDataMap.get("preferred_locales[0]"));
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
