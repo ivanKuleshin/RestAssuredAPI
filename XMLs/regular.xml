@@ -12,19 +12,19 @@
 
     <test name="Test1">
         <classes>
-            <class name="TestCase1"/>
+            <class name="com.erat.RestAssuredAPI.testcases.TestCases.TestCase1"/>
         </classes>
     </test>
 
     <test name="Test2">
         <classes>
-            <class name="TestCase2"/>
+            <class name="com.erat.RestAssuredAPI.testcases.TestCases.TestCase2"/>
         </classes>
     </test>
 
     <test name="Test3 - Failure">
         <classes>
-            <class name="TestFailure"/>
+            <class name="com.erat.RestAssuredAPI.testcases.TestCases.TestFailure"/>
         </classes>
     </test>
 </suite>
