@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.*;
 
 public class CreateCustomerTest extends BaseTest {
-    private static final String EXPECTED_TYPE = "invalid_request_error";
     private static final CreateCustomerAPI createCustomerAPI =  new CreateCustomerAPI();
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
@@ -30,8 +29,6 @@ public class CreateCustomerTest extends BaseTest {
         System.out.println("The size of main map is: " + response.jsonPath().getMap("$").size());
         System.out.println("The customer's address is: " + response.jsonPath().getMap("address").get("line1"));
         System.out.println("The size of preferred_locales list is: " + response.jsonPath().getList("preferred_locales").size());
-
-        System.setProperty("lastCreatedCustomer", customerId);
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
@@ -40,7 +37,7 @@ public class CreateCustomerTest extends BaseTest {
 
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.UNAUTHORIZED.getValue());
         String actualType = response.jsonPath().getMap("error").get("type").toString();
-        assertThat(actualType).isEqualTo(EXPECTED_TYPE);
+        assertThat(actualType).isEqualTo(INVALID_EXPECTED_TYPE);
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")
