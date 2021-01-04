@@ -18,15 +18,17 @@ public class CreateCustomerTest extends BaseTest {
     public void createCustomerWithValidToken(Map<String, String> testDataMap) {
         Response response = given().auth().oauth2(properties.getProperty(validSecretKey)).
                 formParams(testDataMap).
-                log().uri().post(properties.getProperty(customerAPIEndPoint));
+                log().uri().log().parameters().post(properties.getProperty(customerAPIEndPoint));
 
         response.prettyPrint();
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
 
         String customerId = response.getBody().path("id").toString();
+
         System.out.println("The ID of the new customer is: " + customerId);
         System.out.println("The customer's address is: " + response.jsonPath().get("address.line1"));
         System.out.println("The first customer's preferred locale is: " + response.jsonPath().get("preferred_locales[0]"));
+
         System.out.println("The size of address's map is: " + response.jsonPath().getMap("address").size());
         System.out.println("The size of main map is: " + response.jsonPath().getMap("$").size());
         System.out.println("The customer's address is: " + response.jsonPath().getMap("address").get("line1"));
@@ -39,7 +41,7 @@ public class CreateCustomerTest extends BaseTest {
     public void createCustomerWithInvalidToken(Map<String, String> testDataMap) {
         Response response = given().auth().oauth2(properties.getProperty(validSecretKey) + new Random().nextInt(100)).
                 formParams(testDataMap).
-                log().uri().post(properties.getProperty(customerAPIEndPoint));
+                log().uri().log().parameters().post(properties.getProperty(customerAPIEndPoint));
 
         response.prettyPrint();
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.UNAUTHORIZED.getValue());
