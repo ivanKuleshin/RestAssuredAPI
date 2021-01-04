@@ -8,7 +8,7 @@
     </groups>
 
     <listeners>
-        <listener class-name="Reporting.ExtentListeners"/>
+        <listener class-name="Reporting.Listeners.ExtentListeners"/>
     </listeners>
 
     <test name="Test1">
