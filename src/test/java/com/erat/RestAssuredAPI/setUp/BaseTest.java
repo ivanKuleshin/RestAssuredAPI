@@ -1,5 +1,6 @@
 package com.erat.RestAssuredAPI.setUp;
 
+import com.erat.RestAssuredAPI.utils.TestUtil;
 import io.restassured.RestAssured;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -12,6 +13,7 @@ public class BaseTest {
     protected static final String INVALID_EXPECTED_TYPE = "invalid_request_error";
 
     public static Properties properties = new Properties();
+    protected static TestUtil testUtil = new TestUtil();
 
     public static String customerAPIEndPoint = "customerAPIEndPoint";
     public static String validSecretKey = "validSecretKey";

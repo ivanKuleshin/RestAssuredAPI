@@ -25,11 +25,11 @@ public class UserPOJO {
         this.address = address;
     }
 
-    public void setList(List<Integer> listOfPhoneNumbers) {
+    public void setListOfPhoneNumbers(List<Integer> listOfPhoneNumbers) {
         this.listOfPhoneNumbers = listOfPhoneNumbers;
     }
 
-    public List<Integer> getList() {
+    public List<Integer> getListOfPhoneNumbers() {
         return listOfPhoneNumbers;
     }
 

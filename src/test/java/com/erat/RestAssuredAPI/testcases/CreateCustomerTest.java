@@ -4,6 +4,7 @@ import com.erat.RestAssuredAPI.APIs.CreateCustomerAPI;
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.restassured.response.Response;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -17,13 +18,23 @@ public class CreateCustomerTest extends BaseTest {
     public void createCustomerWithValidToken(Map<String, String> testDataMap) {
         Response response = createCustomerAPI.sendPostRequestToCreateCustomer(testDataMap);
 
-        assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
-        assertThat(response.jsonPath().getString("address.city")).isEqualTo(testDataMap.get("address[city]"));
-        assertThat(response.jsonPath().getString("description")).isEqualTo(testDataMap.get("description"));
-        assertThat(response.jsonPath().getString("email")).isEqualTo(testDataMap.get("email"));
-        assertThat(response.jsonPath().getString("name")).isEqualTo(testDataMap.get("name"));
-        assertThat(response.jsonPath().getString("phone")).isEqualTo(testDataMap.get("phone"));
-        assertThat(response.jsonPath().getString("preferred_locales[0]")).isEqualTo(testDataMap.get("preferred_locales[0]"));
+        SoftAssertions softAssertions  = new SoftAssertions();
+        softAssertions.assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
+        softAssertions.assertThat(response.jsonPath().getString("address.city")).isEqualTo(testDataMap.get("address[city]"));
+        softAssertions.assertThat(response.jsonPath().getString("address.country")).isNull();
+        softAssertions.assertThat(response.jsonPath().getString("balance")).isEqualTo("0");
+        softAssertions.assertThat(response.jsonPath().getString("currency")).isNull();
+        softAssertions.assertThat(response.jsonPath().getString("delinquent")).isEqualTo(String.valueOf(false));
+        softAssertions.assertThat(response.jsonPath().getString("discount")).isNull();
+        softAssertions.assertThat(response.jsonPath().getString("livemode")).isEqualTo(String.valueOf(false));
+        softAssertions.assertThat(response.jsonPath().getString("preferred_locales[0]")).isEqualTo(testDataMap.get("preferred_locales[0]"));
+        softAssertions.assertThat(response.jsonPath().getString("shipping")).isNull();
+
+        softAssertions.assertAll();
+
+        testDataMap.remove("address[city]");
+        testDataMap.remove("preferred_locales[0]");
+        testUtil.actualMapContainsExpected(response.jsonPath().getMap("$"), testDataMap);
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
