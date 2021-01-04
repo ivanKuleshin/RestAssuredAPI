@@ -1,0 +1,47 @@
+package com.erat.RestAssuredAPI.setUp;
+
+import io.restassured.RestAssured;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class BaseTest {
+    public static Properties properties = new Properties();
+
+    public static String customerAPIEndPoint = "customerAPIEndPoint";
+    public static String validSecretKey = "validSecretKey";
+    public static String excelBaseDir = "excelBaseDir";
+
+    public enum StatusCodes {
+        OK(200),
+        BAD_REQUEST(400),
+        UNAUTHORIZED(401),
+        INTERNAL_SERVER_ERROR(500);
+        private final int statusCode;
+        StatusCodes(int statusCode) {
+            this.statusCode = statusCode;
+        }
+        public int getValue(){ return statusCode;}
+    }
+
+    @BeforeSuite
+    public void setUp() {
+        try {
+            FileInputStream inputStream = new FileInputStream("src/test/resources/properties/config.properties");
+            properties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        RestAssured.baseURI = properties.getProperty("baseURI");
+        RestAssured.basePath = properties.getProperty("basePath");
+    }
+
+    @AfterSuite
+    public void tearDown() {
+
+    }
+}

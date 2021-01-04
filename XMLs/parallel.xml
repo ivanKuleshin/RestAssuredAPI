@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="ParallelTestSuite1" verbose="1" parallel="tests">
+
+    <groups>
+        <run>
+            <include name="parallel"/>
+        </run>
+    </groups>
+
+    <listeners>
+        <listener class-name="Reporting.ExtentListeners"/>
+    </listeners>
+
+    <test name="ParallelTest1">
+        <parameter name="paramFromXml" value="Hello from XML (1)"/>
+        <classes>
+            <class name="TestBrowser"/>
+        </classes>
+    </test>
+
+    <test name="ParallelTest2">
+        <parameter name="paramFromXml" value="Hello from XML (2)"/>
+        <classes>
+            <class name="TestBrowser"/>
+        </classes>
+    </test>
+</suite>

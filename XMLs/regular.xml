@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="TestSuite1" verbose="1">
+<!--    <groups>-->
+<!--        <run>-->
+<!--            <include name="smokeTests"/>-->
+<!--        </run>-->
+<!--    </groups>-->
+
+    <listeners>
+        <listener class-name="CustomListeners.Listeners"/>
+    </listeners>
+
+    <test name="Test1">
+        <classes>
+            <class name="TestCase1"/>
+        </classes>
+    </test>
+
+    <test name="Test2">
+        <classes>
+            <class name="TestCase2"/>
+        </classes>
+    </test>
+
+    <test name="Test3 - Failure">
+        <classes>
+            <class name="TestFailure"/>
+        </classes>
+    </test>
+</suite>
