@@ -1,5 +1,6 @@
 package com.erat.RestAssuredAPI.testcases;
 
+import com.erat.RestAssuredAPI.APIs.CreateCustomerAPI;
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.restassured.response.Response;
@@ -9,18 +10,14 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.*;
 
-import static io.restassured.RestAssured.given;
-
 public class CreateCustomerTest extends BaseTest {
     private static final String EXPECTED_TYPE = "invalid_request_error";
+    private static final CreateCustomerAPI createCustomerAPI =  new CreateCustomerAPI();
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
     public void createCustomerWithValidToken(Map<String, String> testDataMap) {
-        Response response = given().auth().oauth2(properties.getProperty(validSecretKey)).
-                formParams(testDataMap).
-                log().uri().log().parameters().post(properties.getProperty(customerAPIEndPoint));
+        Response response = createCustomerAPI.sendPostRequestToCreateCustomer(testDataMap);
 
-        response.prettyPrint();
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
 
         String customerId = response.getBody().path("id").toString();
@@ -39,11 +36,8 @@ public class CreateCustomerTest extends BaseTest {
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
     public void createCustomerWithInvalidToken(Map<String, String> testDataMap) {
-        Response response = given().auth().oauth2(properties.getProperty(validSecretKey) + new Random().nextInt(100)).
-                formParams(testDataMap).
-                log().uri().log().parameters().post(properties.getProperty(customerAPIEndPoint));
+        Response response = createCustomerAPI.sendPostRequestToCreateCustomerWithInvalidToken(testDataMap);
 
-        response.prettyPrint();
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.UNAUTHORIZED.getValue());
         String actualType = response.jsonPath().getMap("error").get("type").toString();
         assertThat(actualType).isEqualTo(EXPECTED_TYPE);
