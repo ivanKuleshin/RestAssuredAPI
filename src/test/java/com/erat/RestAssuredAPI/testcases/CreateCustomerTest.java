@@ -7,6 +7,7 @@ import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
+import static com.erat.RestAssuredAPI.testcases.pojoClasses.CustomerAddressPojo.getCustomerAddressAsNormalMap;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.*;
@@ -15,26 +16,18 @@ public class CreateCustomerTest extends BaseTest {
     private static final CreateCustomerAPI createCustomerAPI =  new CreateCustomerAPI();
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
-    public void createCustomerWithValidToken(Map<String, String> testDataMap) {
-        Response response = createCustomerAPI.sendPostRequestToCreateCustomer(testDataMap);
+    public void createCustomerWithValidTokenUsingPojo(Map<String, String> testDataMap) {
+        Response response = createCustomerAPI.sendPostRequestToCreateCustomerUsingPojo(testDataMap);
 
         SoftAssertions softAssertions  = new SoftAssertions();
         softAssertions.assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
-        softAssertions.assertThat(response.jsonPath().getString("address.city")).isEqualTo(testDataMap.get("address[city]"));
-        softAssertions.assertThat(response.jsonPath().getString("address.country")).isNull();
-        softAssertions.assertThat(response.jsonPath().getString("balance")).isEqualTo("0");
-        softAssertions.assertThat(response.jsonPath().getString("currency")).isNull();
-        softAssertions.assertThat(response.jsonPath().getString("delinquent")).isEqualTo(String.valueOf(false));
-        softAssertions.assertThat(response.jsonPath().getString("discount")).isNull();
-        softAssertions.assertThat(response.jsonPath().getString("livemode")).isEqualTo(String.valueOf(false));
-        softAssertions.assertThat(response.jsonPath().getString("preferred_locales[0]")).isEqualTo(testDataMap.get("preferred_locales[0]"));
-        softAssertions.assertThat(response.jsonPath().getString("shipping")).isNull();
 
         softAssertions.assertAll();
 
-        testDataMap.remove("address[city]");
-        testDataMap.remove("preferred_locales[0]");
-        testUtil.actualMapContainsExpected(response.jsonPath().getMap("$"), testDataMap);
+        Map<String, Object> expectedTestData = testUtil.getExpectedData(testDataMap);
+        expectedTestData.put("address", getCustomerAddressAsNormalMap(testDataMap));
+
+        testUtil.actualMapContainsExpected(response.jsonPath().getMap("$"), expectedTestData);
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
@@ -48,7 +41,9 @@ public class CreateCustomerTest extends BaseTest {
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")
     public void createCustomerWithValidToken2(Map<String, String> testDataMap) {
-        createCustomerWithValidToken(testDataMap);
+        Response response = createCustomerAPI.sendPostRequestToCreateCustomer(testDataMap);
+
+        assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")
