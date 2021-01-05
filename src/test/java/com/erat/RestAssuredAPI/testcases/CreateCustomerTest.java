@@ -18,15 +18,10 @@ public class CreateCustomerTest extends BaseTest {
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
     public void createCustomerWithValidTokenUsingPojo(Map<String, String> testDataMap) {
         Response response = createCustomerAPI.sendPostRequestToCreateCustomerUsingPojo(testDataMap);
-
-        SoftAssertions softAssertions  = new SoftAssertions();
-        softAssertions.assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
-
-        softAssertions.assertAll();
+        assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
 
         Map<String, Object> expectedTestData = testUtil.getExpectedData(testDataMap);
         expectedTestData.put("address", getCustomerAddressAsNormalMap(testDataMap));
-
         testUtil.actualMapContainsExpected(response.jsonPath().getMap("$"), expectedTestData);
     }
 
