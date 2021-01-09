@@ -26,7 +26,6 @@ public class GetCustomerTest extends BaseTest {
         String customerId = response.jsonPath().get("id");
         response = getCustomerAPI.sendGetRequestToRetrieveCustomer(customerId);
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
-
         testUtil.validateCustomerResponse(testDataMap, response);
 
         deleteCustomerAPI.sendDeleteRequestToDeleteCustomer(customerId);
@@ -40,6 +39,5 @@ public class GetCustomerTest extends BaseTest {
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.NOT_FOUND.getValue());
         assertThat(response.jsonPath().getMap("error").get("message")).isEqualTo(String.format(NO_SUCH_CUSTOMER_MSG, invalidCustomerId));
         assertThat(response.jsonPath().getMap("error").get("type")).isEqualTo(INVALID_EXPECTED_TYPE);
-
     }
 }
