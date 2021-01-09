@@ -8,8 +8,8 @@ import io.restassured.response.Response;
 import java.util.Map;
 import java.util.Random;
 
-import static com.erat.RestAssuredAPI.testcases.pojoClasses.CustomerAddressPojo.*;
-import static com.erat.RestAssuredAPI.testcases.pojoClasses.CustomerPojo.*;
+import static com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo.*;
+import static com.erat.RestAssuredAPI.pojoClasses.CustomerPojo.*;
 import static io.restassured.RestAssured.given;
 
 public class CreateCustomerAPI extends BaseTest {

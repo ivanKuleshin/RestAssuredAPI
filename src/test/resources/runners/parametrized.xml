@@ -13,7 +13,7 @@
 
     <test name="Test1">
         <classes>
-            <class name="com.erat.RestAssuredAPI.testcases.ParametrizedTestCases.TestParametrized"/>
+            <class name="com.erat.RestAssuredAPI.testCases.ParametrizedTestCases.TestParametrized"/>
         </classes>
     </test>
 

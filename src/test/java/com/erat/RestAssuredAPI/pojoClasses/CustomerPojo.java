@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.testcases.pojoClasses;
+package com.erat.RestAssuredAPI.pojoClasses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -68,7 +68,6 @@ public class CustomerPojo {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
 
     public void setPreferredLocales(String preferredLocales) {
         this.preferredLocales = preferredLocales;

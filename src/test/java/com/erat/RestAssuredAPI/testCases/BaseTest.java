@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.testcases.TestCases;
+package com.erat.RestAssuredAPI.testCases;
 import org.testng.annotations.*;
 
 public class BaseTest {

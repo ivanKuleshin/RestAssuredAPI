@@ -1,10 +1,8 @@
-package com.erat.RestAssuredAPI.testcases.ResrAssuredExamples;
+package com.erat.RestAssuredAPI.testCases.ResrAssuredExamples;
 
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
-import static org.hamcrest.Matchers.*;
 
 public class GetRequests {
     private static final String token = "sk_test_51I3N4DCjw1mgrNWQp3LxVem3R4SZhIqISesbED9Wlt24ujX1CaEPBHD9tUGtRC5hb3ZrZq7JS8dHbOn5wBGn9yIj00FxWcPpQG";

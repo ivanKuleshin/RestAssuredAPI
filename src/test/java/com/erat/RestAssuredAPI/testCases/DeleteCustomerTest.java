@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.testcases;
+package com.erat.RestAssuredAPI.testCases;
 
 import com.erat.RestAssuredAPI.APIs.CreateCustomerAPI;
 import com.erat.RestAssuredAPI.APIs.DeleteCustomerAPI;

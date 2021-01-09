@@ -1,13 +1,12 @@
-package com.erat.RestAssuredAPI.testcases;
+package com.erat.RestAssuredAPI.testCases;
 
 import com.erat.RestAssuredAPI.APIs.CreateCustomerAPI;
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.restassured.response.Response;
-import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
-import static com.erat.RestAssuredAPI.testcases.pojoClasses.CustomerAddressPojo.getCustomerAddressAsNormalMap;
+import static com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo.getCustomerAddressAsNormalMap;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.*;

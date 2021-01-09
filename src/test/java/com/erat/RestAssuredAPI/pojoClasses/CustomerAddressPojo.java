@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.testcases.pojoClasses;
+package com.erat.RestAssuredAPI.pojoClasses;
 
 import java.util.HashMap;
 import java.util.Map;

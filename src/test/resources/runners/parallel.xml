@@ -14,14 +14,14 @@
     <test name="ParallelTest1">
         <parameter name="paramFromXml" value="Hello from XML (1)"/>
         <classes>
-            <class name="com.erat.RestAssuredAPI.testcases.ParallelTests.TestBrowser"/>
+            <class name="com.erat.RestAssuredAPI.testCases.ParallelTests.TestBrowser"/>
         </classes>
     </test>
 
     <test name="ParallelTest2">
         <parameter name="paramFromXml" value="Hello from XML (2)"/>
         <classes>
-            <class name="com.erat.RestAssuredAPI.testcases.ParallelTests.TestBrowser"/>
+            <class name="com.erat.RestAssuredAPI.testCases.ParallelTests.TestBrowser"/>
         </classes>
     </test>
 </suite>
