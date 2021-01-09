@@ -19,7 +19,9 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
+/**
+ * This class is using to get test data from Excel file
+ */
 public class ExcelReader {
 
     public String path;

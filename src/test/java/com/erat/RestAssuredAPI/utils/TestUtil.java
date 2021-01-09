@@ -10,6 +10,11 @@ public class TestUtil {
         assertThat(actualMap.entrySet().containsAll(expectedMap.entrySet())).isTrue();
     }
 
+    /**
+     * This method is using to build an expected data Map due to the unusual response structure.
+     * @param testDataMap - input test data Map
+     * @return Method returns expected data Map
+     */
     public Map<String, Object> getExpectedData(Map<String, String> testDataMap){
         Map<String, Object> expectedTestData = new HashMap<>();
 
