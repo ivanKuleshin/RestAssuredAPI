@@ -11,6 +11,12 @@ public class DataUtil extends BaseTest {
     private static final int ONE_ROW = 1;
     private static final int ZERO = 0;
 
+    /**
+     * This DataProvider is using to get test parameters from Excel file by different sheets
+     * @param method - is using to get test method name (method name should be the same as sheet name in the Excel file)
+     * @param aClass - is using to get part of the Excel file name with testing data
+     * @return - this DataProvider returns a List of Maps with testing data
+     */
     @DataProvider(name = "getExcelDataAsTable")
     public Object[] getExcelDataAsTable(Method method, Class<?> aClass) {
         ExcelReader excelReader = new ExcelReader(properties.getProperty(excelBaseDir) + aClass.getSimpleName() + "Data.xlsx");
@@ -42,6 +48,13 @@ public class DataUtil extends BaseTest {
         return data.toArray();
     }
 
+    /**
+     * This DataProvider is using to get test parameters from the Excel file by only one sheet.
+     * Test data should be puttied in the test tables, which should be separated by a blank line.
+     * @param method - is using to get test method name (method name should correspond to the first row of the test data table in the Excel file)
+     * @param aClass - is using to get part of the Excel file name with testing data
+     * @return - this DataProvider returns a List of Maps with testing data(one list element - one test launch)
+     */
     @DataProvider(name = "getExcelDataAsTableWithOneSheet")
     public Object[] getExcelDataAsTableWithOneSheet(Method method, Class<?> aClass) {
         String sheetName = properties.getProperty("testDataSheetName");
