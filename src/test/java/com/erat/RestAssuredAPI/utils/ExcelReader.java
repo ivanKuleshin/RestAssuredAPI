@@ -165,10 +165,6 @@ public class ExcelReader {
                 return "";
             else
                 return String.valueOf(cell.getBooleanCellValue());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "row " + rowNum + " or column " + colNum + " does not exist  in xls";
-//        }
     }
 
     // returns true if data is set successfully else false
@@ -425,15 +421,16 @@ public class ExcelReader {
         for (int i = 2; i <= getRowCount(sheetName); i++) {
             if (getCellData(sheetName, 0, i).equalsIgnoreCase(testCaseName)) {
 
-                setCellData(sheetName, screenShotColName, i + index, message, url);
-                break;
+                if(setCellData(sheetName, screenShotColName, i + index, message, url)){
+                    break;
+                } else
+                    throw new RuntimeException("Data was NOT setted successfully");
             }
         }
         return true;
     }
 
     public int getCellRowNum(String sheetName, String colName, String cellValue) {
-
         for (int i = 2; i <= getRowCount(sheetName); i++) {
             if (getCellData(sheetName, colName, i).equalsIgnoreCase(cellValue)) {
                 return i;
