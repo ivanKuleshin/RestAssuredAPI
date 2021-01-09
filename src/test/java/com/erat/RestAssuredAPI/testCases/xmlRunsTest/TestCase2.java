@@ -1,6 +1,6 @@
 package com.erat.RestAssuredAPI.testCases.xmlRunsTest;
 
-import com.erat.RestAssuredAPI.testCases.BaseTest;
+import com.erat.RestAssuredAPI.setUp.BaseTest;
 import org.assertj.core.api.*;
 import org.testng.annotations.Test;
 

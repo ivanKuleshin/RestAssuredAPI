@@ -1,5 +1,7 @@
 package com.erat.RestAssuredAPI.setUp;
 
+import com.erat.RestAssuredAPI.APIs.CreateCustomerAPI;
+import com.erat.RestAssuredAPI.APIs.GetCustomerAPI;
 import com.erat.RestAssuredAPI.utils.TestUtil;
 import io.restassured.RestAssured;
 import org.testng.annotations.AfterSuite;

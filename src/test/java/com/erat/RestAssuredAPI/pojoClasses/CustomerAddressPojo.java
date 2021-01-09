@@ -11,13 +11,13 @@ public class CustomerAddressPojo {
     private String postalCode;
     private String state;
 
-    public CustomerAddressPojo(String city, String country, String line1, String line2, String postalCode, String state) {
-        this.city = city;
-        this.country = country;
-        this.line1 = line1;
-        this.line2 = line2;
-        this.postalCode = postalCode;
-        this.state = state;
+    public CustomerAddressPojo(Object city, Object country, Object line1, Object line2, Object postalCode, Object state) {
+        this.city = city.toString();
+        this.country = country.toString();
+        this.line1 = line1.toString();
+        this.line2 = line2.toString();
+        this.postalCode = postalCode.toString();
+        this.state = state.toString();
     }
 
     public static Map<String, String> getCustomerAddressAsTestMap(CustomerAddressPojo customerAddressPojo) {
@@ -31,9 +31,9 @@ public class CustomerAddressPojo {
         return customerAddressMap;
     }
 
-    public static Map<String, String> getCustomerAddressAsNormalMap(Map<String, String> testDataMap) {
-        Map<String, String> normalMap = new HashMap<>();
-        for(Map.Entry<String, String> entry : testDataMap.entrySet()){
+    public static Map<String, Object> getCustomerAddressAsNormalMap(Map<String, Object> testDataMap) {
+        Map<String, Object> normalMap = new HashMap<>();
+        for(Map.Entry<String, Object> entry : testDataMap.entrySet()){
             if(entry.getKey().contains("address")){
                 normalMap.put(substringKey(entry), entry.getValue());
             }
@@ -41,7 +41,7 @@ public class CustomerAddressPojo {
         return normalMap;
     }
 
-    private static String substringKey(Map.Entry<String, String> entry){
+    private static String substringKey(Map.Entry<String, Object> entry){
         return entry.getKey().substring(entry.getKey().indexOf('[') + 1, entry.getKey().indexOf(']'));
     }
 
@@ -50,7 +50,7 @@ public class CustomerAddressPojo {
                 "line1", "line2", "07400", "Kyiv obl.");
     }
 
-    public static CustomerAddressPojo getCustomerAddressPojoFromMap(Map<String, String> testDataMap){
+    public static CustomerAddressPojo getCustomerAddressPojoFromMap(Map<String, Object> testDataMap){
         return new CustomerAddressPojo(testDataMap.get("address[city]"), testDataMap.get("address[country]"),
                 testDataMap.get("address[line1]"), testDataMap.get("address[line2]"), testDataMap.get("address[postal_code]"),
                 testDataMap.get("address[state]"));

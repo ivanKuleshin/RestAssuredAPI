@@ -6,7 +6,6 @@ import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo.getCustomerAddressAsNormalMap;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.*;
@@ -15,13 +14,11 @@ public class CreateCustomerTest extends BaseTest {
     private static final CreateCustomerAPI createCustomerAPI =  new CreateCustomerAPI();
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
-    public void createCustomerWithValidTokenUsingPojo(Map<String, String> testDataMap) {
+    public void createCustomerWithValidTokenUsingPojo(Map<String, Object> testDataMap) {
         Response response = createCustomerAPI.sendPostRequestToCreateCustomerUsingPojo(testDataMap);
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
 
-        Map<String, Object> expectedTestData = testUtil.getExpectedData(testDataMap);
-        expectedTestData.put("address", getCustomerAddressAsNormalMap(testDataMap));
-        testUtil.actualMapContainsExpected(response.jsonPath().getMap("$"), expectedTestData);
+        testUtil.validateCustomerResponse(testDataMap, response);
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
@@ -34,7 +31,7 @@ public class CreateCustomerTest extends BaseTest {
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")
-    public void createCustomerWithValidToken2(Map<String, String> testDataMap) {
+    public void createCustomerWithValidToken2(Map<String, Object> testDataMap) {
         Response response = createCustomerAPI.sendPostRequestToCreateCustomer(testDataMap);
 
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());

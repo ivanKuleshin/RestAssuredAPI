@@ -17,7 +17,7 @@ public class DeleteCustomerTest extends BaseTest {
     private static final CreateCustomerAPI createCustomerAPI = new CreateCustomerAPI();
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
-    public void deleteCustomer(Map<String, String> testDataMap) {
+    public void deleteCustomer(Map<String, Object> testDataMap) {
         Response response = createCustomerAPI.sendPostRequestToCreateCustomer(testDataMap);
 
         String customerId = response.jsonPath().get("id");

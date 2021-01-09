@@ -13,12 +13,12 @@ public class CustomerPojo {
     private String preferredLocales;
 
 
-    public CustomerPojo(String name, String email, String description, String phone, String preferredLocales) {
-        this.name = name;
-        this.email = email;
-        this.description = description;
-        this.phone = phone;
-        this.preferredLocales = preferredLocales;
+    public CustomerPojo(Object name, Object email, Object description, Object phone, Object preferredLocales) {
+        this.name = name.toString();
+        this.email = email.toString();
+        this.description = description.toString();
+        this.phone = phone.toString();
+        this.preferredLocales = preferredLocales.toString();
     }
 
     public static CustomerPojo getDefaultCustomerPojo() {
@@ -28,7 +28,7 @@ public class CustomerPojo {
 
 
 
-    public static CustomerPojo getCustomerPojoFromMap(Map<String, String> testDataMap){
+    public static CustomerPojo getCustomerPojoFromMap(Map<String, Object> testDataMap){
         return new CustomerPojo(testDataMap.get("name"), testDataMap.get("email"), testDataMap.get("description"),
                 testDataMap.get("phone"), testDataMap.get("preferred_locales[0]"));
     }

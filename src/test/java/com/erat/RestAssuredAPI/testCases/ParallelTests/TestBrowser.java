@@ -1,6 +1,6 @@
 package com.erat.RestAssuredAPI.testCases.ParallelTests;
 
-import com.erat.RestAssuredAPI.testCases.BaseTest;
+import com.erat.RestAssuredAPI.setUp.BaseTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;

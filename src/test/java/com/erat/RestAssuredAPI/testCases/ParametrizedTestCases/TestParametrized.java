@@ -1,6 +1,6 @@
 package com.erat.RestAssuredAPI.testCases.ParametrizedTestCases;
 
-import com.erat.RestAssuredAPI.testCases.BaseTest;
+import com.erat.RestAssuredAPI.setUp.BaseTest;
 import com.erat.RestAssuredAPI.utils.ExcelReader;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

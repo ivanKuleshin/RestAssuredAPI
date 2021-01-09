@@ -1,24 +1,41 @@
 package com.erat.RestAssuredAPI.utils;
 
-import static org.assertj.core.api.Assertions.*;
+import io.restassured.response.Response;
+import org.assertj.core.api.SoftAssertions;
+
+import static com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo.getCustomerAddressAsNormalMap;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class TestUtil {
-    public void actualMapContainsExpected(Map<String, String> actualMap, Map<String, Object> expectedMap){
-        assertThat(actualMap.entrySet().containsAll(expectedMap.entrySet())).isTrue();
+    public void actualMapContainsExpected(Map<String, Object> actualMap, Map<String, Object> expectedMap){
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (Map.Entry<String, Object> entry : expectedMap.entrySet()){
+            if(actualMap.containsKey(entry.getKey())){
+
+                softAssertions.assertThat(actualMap.get(entry.getKey())).isEqualTo(entry.getValue());
+            } else
+                throw new RuntimeException("Actual map does NOT contain key from expected map. The key is: " + entry.getKey());
+        }
+        softAssertions.assertAll();
+    }
+
+    public void validateCustomerResponse(Map<String, Object> actualTestDataMap, Response response){
+        Map<String, Object> expectedTestData = getExpectedData(actualTestDataMap);
+        expectedTestData.put("address", getCustomerAddressAsNormalMap(actualTestDataMap));
+        actualMapContainsExpected(response.jsonPath().getMap("$"), expectedTestData);
     }
 
     /**
      * This method is using to build an expected data Map due to the unusual response structure.
-     * @param testDataMap - input test data Map
+     * @param actualTestDataMap - input test data Map
      * @return Method returns expected data Map
      */
-    public Map<String, Object> getExpectedData(Map<String, String> testDataMap){
+    public Map<String, Object> getExpectedData(Map<String, Object> actualTestDataMap){
         Map<String, Object> expectedTestData = new HashMap<>();
 
-        for(Map.Entry<String, String> entry : testDataMap.entrySet()){
+        for(Map.Entry<String, Object> entry : actualTestDataMap.entrySet()){
             if (!entry.getKey().contains("[")){
                 expectedTestData.put(entry.getKey(), entry.getValue());
             }

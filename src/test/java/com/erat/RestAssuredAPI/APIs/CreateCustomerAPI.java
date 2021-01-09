@@ -18,7 +18,7 @@ import static io.restassured.RestAssured.given;
 public class CreateCustomerAPI extends BaseTest {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public Response sendPostRequestToCreateCustomer(Map<String, String> testDataMap) {
+    public Response sendPostRequestToCreateCustomer(Map<String, Object> testDataMap) {
         Response response = given().auth().oauth2(properties.getProperty(validSecretKey)).
                 formParams(testDataMap).
                 log().uri().log().parameters().request(RequestTypes.POST.getValue(), properties.getProperty(customerAPIEndPoint));
@@ -38,7 +38,7 @@ public class CreateCustomerAPI extends BaseTest {
         return response;
     }
 
-    public Response sendPostRequestToCreateCustomerUsingPojo(Map<String, String> testDataMap) {
+    public Response sendPostRequestToCreateCustomerUsingPojo(Map<String, Object> testDataMap) {
         Response response = given().auth().oauth2(properties.getProperty(validSecretKey)).
                 formParams(objectMapper.convertValue(getCustomerPojoFromMap(testDataMap), new TypeReference<Map<String, String>>() {
                 })).
