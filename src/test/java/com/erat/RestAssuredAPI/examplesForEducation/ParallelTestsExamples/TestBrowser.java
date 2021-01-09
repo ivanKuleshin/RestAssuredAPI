@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.testCases.ParallelTestsExamples;
+package com.erat.RestAssuredAPI.examplesForEducation.ParallelTestsExamples;
 
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import org.testng.annotations.DataProvider;

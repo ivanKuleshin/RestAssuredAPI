@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.testCases.XMLRunsExamples;
+package com.erat.RestAssuredAPI.examplesForEducation.XMLRunsExamples;
 
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import org.assertj.core.api.*;

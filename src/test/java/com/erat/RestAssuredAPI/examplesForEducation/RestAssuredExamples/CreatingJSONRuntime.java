@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.testCases.RestAssuredExamples;
+package com.erat.RestAssuredAPI.examplesForEducation.RestAssuredExamples;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
