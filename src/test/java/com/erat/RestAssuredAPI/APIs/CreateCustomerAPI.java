@@ -16,8 +16,6 @@ import static io.restassured.RestAssured.given;
  * This class is using to perform requests to create a Customer
  */
 public class CreateCustomerAPI extends BaseTest {
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
     public Response sendPostRequestToCreateCustomer(Map<String, Object> testDataMap) {
         Response response = given().auth().oauth2(properties.getProperty(validSecretKey)).
                 formParams(testDataMap).

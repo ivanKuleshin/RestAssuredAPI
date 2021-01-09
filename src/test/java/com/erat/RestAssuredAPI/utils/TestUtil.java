@@ -2,6 +2,7 @@ package com.erat.RestAssuredAPI.utils;
 
 import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
+import static org.assertj.core.api.Assertions.*;
 
 import static com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo.getCustomerAddressAsNormalMap;
 
@@ -17,6 +18,20 @@ public class TestUtil {
                 softAssertions.assertThat(actualMap.get(entry.getKey())).isEqualTo(entry.getValue());
             } else
                 throw new RuntimeException("Actual map does NOT contain key from expected map. The key is: " + entry.getKey());
+        }
+        softAssertions.assertAll();
+    }
+
+    public void actualMapIsEqualToExpected(Map<String, Object> actualMap, Map<String, Object> expectedMap) {
+        assertThat(actualMap.size()).as("Actual and expected maps have teh different size!").isEqualTo(expectedMap.size());
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (Map.Entry<String, Object> entry : actualMap.entrySet()) {
+            String key = entry.getKey();
+            String actualValue = entry.getValue().toString();
+            String expectedValue = expectedMap.get(key).toString();
+            softAssertions.assertThat(actualValue).as("Key: %s Actual value: %s Expected value: %s", key, actualValue, expectedValue).
+                    isEqualTo(expectedValue);
         }
         softAssertions.assertAll();
     }

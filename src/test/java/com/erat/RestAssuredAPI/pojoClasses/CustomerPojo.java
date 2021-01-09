@@ -1,10 +1,20 @@
 package com.erat.RestAssuredAPI.pojoClasses;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class CustomerPojo {
+@Getter
+@Setter
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CustomerPojo implements Serializable {
+    private String id;
     private String name;
     private String email;
     private String description;
@@ -26,50 +36,8 @@ public class CustomerPojo {
                 "+38014881337", "uk");
     }
 
-
-
     public static CustomerPojo getCustomerPojoFromMap(Map<String, Object> testDataMap){
         return new CustomerPojo(testDataMap.get("name"), testDataMap.get("email"), testDataMap.get("description"),
                 testDataMap.get("phone"), testDataMap.get("preferred_locales[0]"));
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getPreferredLocales() {
-        return preferredLocales;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setPreferredLocales(String preferredLocales) {
-        this.preferredLocales = preferredLocales;
     }
 }

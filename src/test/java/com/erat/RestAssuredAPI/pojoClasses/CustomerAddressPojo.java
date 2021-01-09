@@ -1,13 +1,20 @@
 package com.erat.RestAssuredAPI.pojoClasses;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
+@NoArgsConstructor
 public class CustomerAddressPojo {
     private String city;
     private String country;
     private String line1;
     private String line2;
+    @JsonProperty("postal_code")
     private String postalCode;
     private String state;
 
@@ -42,7 +49,7 @@ public class CustomerAddressPojo {
     }
 
     private static String substringKey(Map.Entry<String, Object> entry){
-        return entry.getKey().substring(entry.getKey().indexOf('[') + 1, entry.getKey().indexOf(']'));
+        return entry.getKey().substring(entry.getKey().indexOf("s[") + 2, entry.getKey().indexOf(']'));
     }
 
     public static CustomerAddressPojo getDefaultCustomerAddressPojo() {
@@ -56,51 +63,8 @@ public class CustomerAddressPojo {
                 testDataMap.get("address[state]"));
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getLine1() {
-        return line1;
-    }
-
-    public String getLine2() {
-        return line2;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setLine1(String line1) {
-        this.line1 = line1;
-    }
-
-    public void setLine2(String line2) {
-        this.line2 = line2;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
+//    public static Map<String, String> getShippingInfoFromTestData(Map<String, Object> testDataMap){
+//        Map<String, Object> shippingInfo = new HashMap<>();
+//
+//    }
 }

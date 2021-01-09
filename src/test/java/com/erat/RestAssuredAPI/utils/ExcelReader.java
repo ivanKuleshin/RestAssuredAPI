@@ -32,7 +32,7 @@ public class ExcelReader {
     private XSSFRow row = null;
     private XSSFCell cell = null;
 
-    public boolean isNextRowExists(String sheetName, int targetRowNumber){
+    public boolean isNextRowExists(String sheetName, int targetRowNumber) {
         int index = workbook.getSheetIndex(sheetName);
         sheet = workbook.getSheetAt(index);
 
@@ -40,7 +40,7 @@ public class ExcelReader {
         return !Objects.isNull(row);
     }
 
-    public boolean isCellHasBlankValue(String sheetName, int targetColumnNumber, int targetRowNumber){
+    public boolean isCellHasBlankValue(String sheetName, int targetColumnNumber, int targetRowNumber) {
         int index = workbook.getSheetIndex(sheetName);
         sheet = workbook.getSheetAt(index);
 
@@ -132,40 +132,43 @@ public class ExcelReader {
 
     // returns the data from a cell
     public String getCellData(String sheetName, int colNum, int rowNum) {
-            int index = workbook.getSheetIndex(sheetName);
-            sheet = workbook.getSheetAt(index);
+        int index = workbook.getSheetIndex(sheetName);
+        sheet = workbook.getSheetAt(index);
 
-            row = sheet.getRow(rowNum);
-            if (Objects.isNull(row)) {
-                throw new RuntimeException(String.format("Row with %s row number was NOT found!", rowNum));
+        row = sheet.getRow(rowNum);
+        if (Objects.isNull(row)) {
+            throw new RuntimeException(String.format("Row with %s row number was NOT found!", rowNum));
+        }
+
+        cell = row.getCell(colNum);
+        if (Objects.isNull(cell)) {
+            throw new RuntimeException(String.format("Cell with %s row number and %s column number was NOT found!", rowNum, colNum));
+        }
+
+        if (cell.getCellType() == CellType.STRING) {
+            return cell.getStringCellValue();
+        } else if (cell.getCellType() == CellType.NUMERIC || cell.getCellType() == CellType.FORMULA) {
+            String cellText = String.valueOf(cell.getNumericCellValue());
+            if(Integer.parseInt(cellText.substring(cellText.indexOf(".") + 1)) == 0){
+                cellText = cellText.substring(0, cellText.indexOf("."));
             }
+            if (DateUtil.isCellDateFormatted(cell)) {
+                // format in form of M/D/YY
+                double d = cell.getNumericCellValue();
 
-            cell = row.getCell(colNum);
-            if (Objects.isNull(cell)) {
-                throw new RuntimeException(String.format("Cell with %s row number and %s column number was NOT found!", rowNum, colNum));
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(DateUtil.getJavaDate(d));
+                cellText =
+                        (String.valueOf(cal.get(Calendar.YEAR))).substring(2);
+                cellText = cal.get(Calendar.MONTH) + 1 + "/" +
+                        cal.get(Calendar.DAY_OF_MONTH) + "/" +
+                        cellText;
             }
-
-            if (cell.getCellType() == CellType.STRING) {
-                return cell.getStringCellValue();
-            } else if (cell.getCellType() == CellType.NUMERIC || cell.getCellType() == CellType.FORMULA) {
-                String cellText = String.valueOf(cell.getNumericCellValue());
-                if (DateUtil.isCellDateFormatted(cell)) {
-                    // format in form of M/D/YY
-                    double d = cell.getNumericCellValue();
-
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(DateUtil.getJavaDate(d));
-                    cellText =
-                            (String.valueOf(cal.get(Calendar.YEAR))).substring(2);
-                    cellText = cal.get(Calendar.MONTH) + 1 + "/" +
-                            cal.get(Calendar.DAY_OF_MONTH) + "/" +
-                            cellText;
-                }
-                return cellText;
-            } else if (cell.getCellType() == CellType.BLANK)
-                return "";
-            else
-                return String.valueOf(cell.getBooleanCellValue());
+            return cellText;
+        } else if (cell.getCellType() == CellType.BLANK)
+            return "";
+        else
+            return String.valueOf(cell.getBooleanCellValue());
     }
 
     // returns true if data is set successfully else false
@@ -422,7 +425,7 @@ public class ExcelReader {
         for (int i = 2; i <= getRowCount(sheetName); i++) {
             if (getCellData(sheetName, 0, i).equalsIgnoreCase(testCaseName)) {
 
-                if(setCellData(sheetName, screenShotColName, i + index, message, url)){
+                if (setCellData(sheetName, screenShotColName, i + index, message, url)) {
                     break;
                 } else
                     throw new RuntimeException("Data was NOT setted successfully");

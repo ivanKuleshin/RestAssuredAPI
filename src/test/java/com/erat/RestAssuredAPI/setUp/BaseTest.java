@@ -3,6 +3,7 @@ package com.erat.RestAssuredAPI.setUp;
 import com.erat.RestAssuredAPI.APIs.CreateCustomerAPI;
 import com.erat.RestAssuredAPI.APIs.GetCustomerAPI;
 import com.erat.RestAssuredAPI.utils.TestUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -16,6 +17,7 @@ public class BaseTest {
 
     public static Properties properties = new Properties();
     protected static TestUtil testUtil = new TestUtil();
+    protected final ObjectMapper objectMapper = new ObjectMapper();
 
     public static String customerAPIEndPoint = "customerAPIEndPoint";
     public static String validSecretKey = "validSecretKey";
