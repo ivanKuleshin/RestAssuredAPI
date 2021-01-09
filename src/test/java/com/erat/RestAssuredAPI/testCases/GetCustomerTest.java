@@ -16,6 +16,7 @@ public class GetCustomerTest extends BaseTest {
     private static final CreateCustomerAPI createCustomerAPI =  new CreateCustomerAPI();
     private static final GetCustomerAPI getCustomerAPI =  new GetCustomerAPI();
     private static final DeleteCustomerAPI deleteCustomerAPI = new DeleteCustomerAPI();
+
     private static final String NO_SUCH_CUSTOMER_MSG = "No such customer: '%s'";
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
