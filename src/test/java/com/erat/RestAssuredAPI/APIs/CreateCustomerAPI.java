@@ -12,6 +12,9 @@ import static com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo.*;
 import static com.erat.RestAssuredAPI.pojoClasses.CustomerPojo.*;
 import static io.restassured.RestAssured.given;
 
+/**
+ * This class is using to perform requests to create a Customer
+ */
 public class CreateCustomerAPI extends BaseTest {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -44,7 +47,6 @@ public class CreateCustomerAPI extends BaseTest {
 
         response.prettyPrint();
         return response;
-
     }
 
     public Response sendPostRequestToCreateCustomerWithInvalidToken(Map<String, String> testDataMap) {
