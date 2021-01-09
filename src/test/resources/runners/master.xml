@@ -2,7 +2,6 @@
 <suite name="MasterSuit" verbose="1">
 <suite-files>
     <suite-file path="parallel.xml"/>
-    <suite-file path="parametrized.xml"/>
     <suite-file path="regular.xml"/>
 </suite-files>
 </suite>

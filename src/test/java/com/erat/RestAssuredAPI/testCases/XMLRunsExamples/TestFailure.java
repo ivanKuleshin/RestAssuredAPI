@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.testCases.xmlRunsTest;
+package com.erat.RestAssuredAPI.testCases.XMLRunsExamples;
 
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import org.testng.Assert;
