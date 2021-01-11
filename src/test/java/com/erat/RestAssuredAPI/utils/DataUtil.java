@@ -1,11 +1,13 @@
 package com.erat.RestAssuredAPI.utils;
 
 import com.erat.RestAssuredAPI.setUp.BaseTest;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.DataProvider;
 
 import java.lang.reflect.Method;
 import java.util.*;
 
+@Slf4j
 public class DataUtil extends BaseTest {
     private static final int TWO_ROWS = 2;
     private static final int ONE_ROW = 1;
@@ -19,7 +21,7 @@ public class DataUtil extends BaseTest {
      */
     @DataProvider(name = "getExcelDataAsTable")
     public Object[] getExcelDataAsTable(Method method, Class<?> aClass) {
-        ExcelReader excelReader = new ExcelReader(properties.getProperty(excelBaseDir) + aClass.getSimpleName() + "Data.xlsx");
+        ExcelReader excelReader = new ExcelReader(excelBaseDir + aClass.getSimpleName() + "Data.xlsx");
 
         String sheetName = method.getName();
         int rows = excelReader.getRowCount(sheetName);
@@ -37,13 +39,7 @@ public class DataUtil extends BaseTest {
             for (int colNum = ZERO; colNum < columns; colNum++) {
                 testDataMap.put(excelReader.getCellData(sheetName, colNum, ZERO), excelReader.getCellData(sheetName, colNum, rowNum + ONE_ROW));
             }
-            System.out.println(String.format("Map before when rowNumber is %s = ", rowNum) + testDataMap);
-            System.out.println(String.format("Data array before assignment when rowNumber is %s = ", rowNum) + data.toString() + "\n");
             data.add(testDataMap);
-            System.out.println(String.format("Map after when rowNumber is %s = ", rowNum) + testDataMap);
-            System.out.println(String.format("Data array after assignment when rowNumber is %s = ", rowNum) + data.toString());
-
-            System.out.println("---------------------------------------------------------------------------------------------------------------" + "\n");
         }
         return data.toArray();
     }
@@ -59,13 +55,13 @@ public class DataUtil extends BaseTest {
     public Object[] getExcelDataAsTableWithOneSheet(Method method, Class<?> aClass) {
         String sheetName = properties.getProperty("testDataSheetName");
 
-        ExcelReader excelReader = new ExcelReader(properties.getProperty(excelBaseDir) + aClass.getSimpleName() + "DataExtended.xlsx");
+        ExcelReader excelReader = new ExcelReader(excelBaseDir + aClass.getSimpleName() + "DataExtended.xlsx");
 
         int totalRows = excelReader.getRowCount(sheetName);
-        System.out.println("Total rows are : " + totalRows);
+        log.info("Total rows are : {}", totalRows);
 
         String testName = method.getName();
-        System.out.println("Test name is : " + testName);
+        log.info("Test name is : {}", testName);
 
         // Find the test case start row
         int testCaseNameRowNum;
@@ -76,7 +72,7 @@ public class DataUtil extends BaseTest {
                     break;
             }
         }
-        System.out.println("Test case starts from row number: " + testCaseNameRowNum);
+        log.info("Test case starts from row number: {}", testCaseNameRowNum);
 
         // Checking total rows in test case
         int dataStartRowNum = testCaseNameRowNum + TWO_ROWS;
@@ -84,7 +80,7 @@ public class DataUtil extends BaseTest {
         while (excelReader.isNextRowExists(sheetName, dataStartRowNum + testRows)) {
             testRows++;
         }
-        System.out.println("Total rows of data are: " + testRows);
+        log.info("Total rows of data are: {}", testRows);
 
         // Checking total cols in test case
         int headersStartColNum = testCaseNameRowNum + ONE_ROW;
@@ -92,7 +88,7 @@ public class DataUtil extends BaseTest {
         while (excelReader.isCellHasBlankValue(sheetName, testCols, headersStartColNum)) {
             testCols++;
         }
-        System.out.println("Total columns are: " + testCols);
+        log.info("Total columns are: {}", testCols);
 
         // Printing data
         List<Object> data = new ArrayList<>();

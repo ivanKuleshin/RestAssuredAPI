@@ -1,10 +1,9 @@
 package com.erat.RestAssuredAPI.setUp;
 
-import com.erat.RestAssuredAPI.APIs.CreateCustomerAPI;
-import com.erat.RestAssuredAPI.APIs.GetCustomerAPI;
 import com.erat.RestAssuredAPI.utils.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
+import org.apache.log4j.PropertyConfigurator;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -19,9 +18,10 @@ public class BaseTest {
     protected static TestUtil testUtil = new TestUtil();
     protected final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static String customerAPIEndPoint = "customerAPIEndPoint";
-    public static String validSecretKey = "validSecretKey";
-    public static String excelBaseDir = "excelBaseDir";
+    public static String customerAPIEndPoint;
+    public static String validSecretKey;
+    public static String excelBaseDir;
+    public static String loggingFilePath;
 
     public enum StatusCodes {
         OK(200),
@@ -56,9 +56,18 @@ public class BaseTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        initProperties();
+        PropertyConfigurator.configure(loggingFilePath);
+    }
 
+    private void initProperties(){
         RestAssured.baseURI = properties.getProperty("baseURI");
         RestAssured.basePath = properties.getProperty("basePath");
+
+        customerAPIEndPoint = properties.getProperty("customerAPIEndPoint");
+        validSecretKey = properties.getProperty("validSecretKey");
+        excelBaseDir = properties.getProperty("excelBaseDir");
+        loggingFilePath = properties.getProperty("loggingFilePath");
     }
 
     @AfterSuite

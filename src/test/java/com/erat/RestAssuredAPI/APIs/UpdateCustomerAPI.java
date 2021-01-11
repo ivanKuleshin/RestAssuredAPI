@@ -2,17 +2,23 @@ package com.erat.RestAssuredAPI.APIs;
 
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import io.restassured.response.Response;
-import static io.restassured.RestAssured.given;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
+import static io.restassured.RestAssured.*;
+
+@Slf4j
 public class UpdateCustomerAPI extends BaseTest {
     public Response sendPostRequestToUpdateCustomer(Map<String, Object> testDataMap, String customerId){
-        Response response = given().auth().oauth2(properties.getProperty(validSecretKey)).
+        Response response = given().auth().oauth2(validSecretKey).
                 log().parameters().
                 formParams(testDataMap).
-                request(RequestTypes.POST.getValue(), properties.getProperty(customerAPIEndPoint) + "/" + customerId);
-        response.prettyPrint();
+                request(RequestTypes.POST.getValue(), customerAPIEndPoint + "/" + customerId);
+
+        log.info("Requested URI: {}", baseURI + basePath + customerAPIEndPoint + "/" + customerId);
+        log.info("Parameters: {}", testDataMap);
+        log.info("Response is: \n{}", response.asString());
         return response;
     }
 }
