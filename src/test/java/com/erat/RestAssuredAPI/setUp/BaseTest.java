@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 
 public class BaseTest {
@@ -22,6 +23,8 @@ public class BaseTest {
     public static String validSecretKey;
     public static String excelBaseDir;
     public static String loggingFilePath;
+
+    String date = new Date().toString().replace(":", "_").replace(" ", "_");
 
     public enum StatusCodes {
         OK(200),
@@ -68,6 +71,8 @@ public class BaseTest {
         validSecretKey = properties.getProperty("validSecretKey");
         excelBaseDir = properties.getProperty("excelBaseDir");
         loggingFilePath = properties.getProperty("loggingFilePath");
+
+        System.setProperty("current.date", date);
     }
 
     @AfterSuite
