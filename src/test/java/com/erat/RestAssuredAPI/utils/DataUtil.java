@@ -55,7 +55,7 @@ public class DataUtil extends BaseTest {
      * @param aClass - is using to get part of the Excel file name with testing data
      * @return - this DataProvider returns a List of Maps with testing data(one list element - one test launch)
      */
-    @DataProvider(name = "getExcelDataAsTableWithOneSheet")
+    @DataProvider(name = "getExcelDataAsTableWithOneSheet", parallel = true)
     public Object[] getExcelDataAsTableWithOneSheet(Method method, Class<?> aClass) {
         String sheetName = properties.getProperty("testDataSheetName");
 
