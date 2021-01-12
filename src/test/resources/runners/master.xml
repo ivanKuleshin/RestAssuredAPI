@@ -3,33 +3,6 @@
 <suite-files>
     <suite-file path="parallel.xml"/>
     <suite-file path="regular.xml"/>
+    <suite-file path="mainSuit.xml"/>
 </suite-files>
-
-    <listeners>
-        <listener class-name="Reporting.Listeners.ExtentListeners"/>
-    </listeners>
-
-    <test name="CreateCustomerTest">
-        <classes>
-            <class name="com.erat.RestAssuredAPI.testCases.CreateCustomerTest"/>
-        </classes>
-    </test>
-
-    <test name="DeleteCustomerTest">
-        <classes>
-            <class name="com.erat.RestAssuredAPI.testCases.DeleteCustomerTest"/>
-        </classes>
-    </test>
-
-    <test name="GetCustomerTest">
-        <classes>
-            <class name="com.erat.RestAssuredAPI.testCases.GetCustomerTest"/>
-        </classes>
-    </test>
-
-    <test name="UpdateCustomerTest">
-        <classes>
-            <class name="com.erat.RestAssuredAPI.testCases.UpdateCustomerTest"/>
-        </classes>
-    </test>
 </suite>
