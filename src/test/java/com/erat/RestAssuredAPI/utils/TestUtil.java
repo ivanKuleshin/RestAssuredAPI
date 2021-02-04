@@ -14,7 +14,6 @@ public class TestUtil {
         SoftAssertions softAssertions = new SoftAssertions();
         for (Map.Entry<String, Object> entry : expectedMap.entrySet()){
             if(actualMap.containsKey(entry.getKey())){
-
                 softAssertions.assertThat(actualMap.get(entry.getKey())).isEqualTo(entry.getValue());
             } else
                 throw new RuntimeException("Actual map does NOT contain key from expected map. The key is: " + entry.getKey());
