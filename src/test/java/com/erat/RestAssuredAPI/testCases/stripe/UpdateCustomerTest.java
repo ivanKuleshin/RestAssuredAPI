@@ -5,6 +5,7 @@ import com.erat.RestAssuredAPI.APIs.stripe.UpdateCustomerAPI;
 import com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerAddressPojo;
 import com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerPojo;
 import com.erat.RestAssuredAPI.setUp.BaseTest;
+import com.erat.RestAssuredAPI.setUp.StripeBaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.restassured.response.Response;
@@ -16,7 +17,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Map;
 import java.util.Random;
 
-public class UpdateCustomerTest extends BaseTest {
+public class UpdateCustomerTest extends StripeBaseTest {
     private static final GetCustomerAPI getCustomerAPI = new GetCustomerAPI();
     private static final UpdateCustomerAPI updateCustomerAPI = new UpdateCustomerAPI();
 

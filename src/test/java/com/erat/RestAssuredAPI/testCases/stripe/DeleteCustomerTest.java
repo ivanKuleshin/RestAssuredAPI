@@ -2,7 +2,7 @@ package com.erat.RestAssuredAPI.testCases.stripe;
 
 import com.erat.RestAssuredAPI.APIs.stripe.CreateCustomerAPI;
 import com.erat.RestAssuredAPI.APIs.stripe.DeleteCustomerAPI;
-import com.erat.RestAssuredAPI.setUp.BaseTest;
+import com.erat.RestAssuredAPI.setUp.StripeBaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Map;
 import java.util.Random;
 
-public class DeleteCustomerTest extends BaseTest {
+public class DeleteCustomerTest extends StripeBaseTest {
     private static final DeleteCustomerAPI deleteCustomerAPI = new DeleteCustomerAPI();
     private static final CreateCustomerAPI createCustomerAPI = new CreateCustomerAPI();
 

@@ -2,9 +2,9 @@ package com.erat.RestAssuredAPI.setUp;
 
 import com.erat.RestAssuredAPI.utils.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.restassured.RestAssured;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
@@ -14,15 +14,11 @@ import java.util.Properties;
 
 public class BaseTest {
     protected static final String INVALID_EXPECTED_TYPE = "invalid_request_error";
+    protected static String loggingFilePath;
 
     public static Properties properties = new Properties();
     protected static TestUtil testUtil = new TestUtil();
     protected final ObjectMapper objectMapper = new ObjectMapper();
-
-    public static String customerAPIEndPoint;
-    public static String validSecretKey;
-    public static String excelBaseDir;
-    public static String loggingFilePath;
 
     String date = new Date().toString().replace(":", "_").replace(" ", "_");
 
@@ -52,28 +48,13 @@ public class BaseTest {
         public String getValue(){ return requestType;}
     }
 
-    @BeforeSuite
-    public void setUp() {
+    public BaseTest() {
         try {
             FileInputStream inputStream = new FileInputStream("src/test/resources/properties/config.properties");
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        initProperties();
-        PropertyConfigurator.configure(loggingFilePath);
-    }
-
-    private void initProperties(){
-        RestAssured.baseURI = properties.getProperty("baseURI");
-        RestAssured.basePath = properties.getProperty("basePath");
-
-        customerAPIEndPoint = properties.getProperty("customerAPIEndPoint");
-        validSecretKey = properties.getProperty("validSecretKey");
-        excelBaseDir = properties.getProperty("excelBaseDir");
-        loggingFilePath = properties.getProperty("loggingFilePath");
-
-        System.setProperty("current.date", date);
     }
 
     @AfterSuite

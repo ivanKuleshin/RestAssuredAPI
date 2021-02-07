@@ -1,6 +1,7 @@
 package com.erat.RestAssuredAPI.APIs.stripe;
 
 import com.erat.RestAssuredAPI.setUp.BaseTest;
+import com.erat.RestAssuredAPI.setUp.StripeBaseTest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,7 @@ import static io.restassured.RestAssured.*;
  * This class is using to perform requests to create a Customer
  */
 @Slf4j
-public class CreateCustomerAPI extends BaseTest {
+public class CreateCustomerAPI extends StripeBaseTest {
     public Response sendPostRequestToCreateCustomer(Map<String, Object> testDataMap) {
         Response response = given().auth().oauth2(validSecretKey).
                 formParams(testDataMap).

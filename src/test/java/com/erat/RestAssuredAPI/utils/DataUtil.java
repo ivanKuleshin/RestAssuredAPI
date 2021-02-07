@@ -1,6 +1,7 @@
 package com.erat.RestAssuredAPI.utils;
 
 import com.erat.RestAssuredAPI.setUp.BaseTest;
+import com.erat.RestAssuredAPI.setUp.StripeBaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.DataProvider;
 
@@ -8,7 +9,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 @Slf4j
-public class DataUtil extends BaseTest {
+public class DataUtil extends StripeBaseTest {
     private static final int TWO_ROWS = 2;
     private static final int ONE_ROW = 1;
     private static final int ZERO = 0;

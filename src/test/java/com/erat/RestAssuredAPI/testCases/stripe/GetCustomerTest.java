@@ -4,6 +4,7 @@ import com.erat.RestAssuredAPI.APIs.stripe.CreateCustomerAPI;
 import com.erat.RestAssuredAPI.APIs.stripe.DeleteCustomerAPI;
 import com.erat.RestAssuredAPI.APIs.stripe.GetCustomerAPI;
 import com.erat.RestAssuredAPI.setUp.BaseTest;
+import com.erat.RestAssuredAPI.setUp.StripeBaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class GetCustomerTest extends BaseTest {
+public class GetCustomerTest extends StripeBaseTest {
     private static final CreateCustomerAPI createCustomerAPI =  new CreateCustomerAPI();
     private static final GetCustomerAPI getCustomerAPI =  new GetCustomerAPI();
     private static final DeleteCustomerAPI deleteCustomerAPI = new DeleteCustomerAPI();
