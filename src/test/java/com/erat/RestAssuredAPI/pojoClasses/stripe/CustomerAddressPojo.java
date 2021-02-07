@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.pojoClasses;
+package com.erat.RestAssuredAPI.pojoClasses.stripe;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

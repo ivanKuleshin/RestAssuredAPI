@@ -1,7 +1,7 @@
-package com.erat.RestAssuredAPI.testCases;
+package com.erat.RestAssuredAPI.testCases.stripe;
 
-import com.erat.RestAssuredAPI.APIs.CreateCustomerAPI;
-import com.erat.RestAssuredAPI.APIs.DeleteCustomerAPI;
+import com.erat.RestAssuredAPI.APIs.stripe.CreateCustomerAPI;
+import com.erat.RestAssuredAPI.APIs.stripe.DeleteCustomerAPI;
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.restassured.response.Response;

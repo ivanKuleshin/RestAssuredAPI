@@ -7,25 +7,25 @@
 
     <test name="CreateCustomerTest">
         <classes>
-            <class name="com.erat.RestAssuredAPI.testCases.CreateCustomerTest"/>
+            <class name="com.erat.RestAssuredAPI.testCases.stripe.CreateCustomerTest"/>
         </classes>
     </test>
 
     <test name="DeleteCustomerTest">
         <classes>
-            <class name="com.erat.RestAssuredAPI.testCases.DeleteCustomerTest"/>
+            <class name="com.erat.RestAssuredAPI.testCases.stripe.DeleteCustomerTest"/>
         </classes>
     </test>
 
     <test name="GetCustomerTest">
         <classes>
-            <class name="com.erat.RestAssuredAPI.testCases.GetCustomerTest"/>
+            <class name="com.erat.RestAssuredAPI.testCases.stripe.GetCustomerTest"/>
         </classes>
     </test>
 
     <test name="UpdateCustomerTest">
         <classes>
-            <class name="com.erat.RestAssuredAPI.testCases.UpdateCustomerTest"/>
+            <class name="com.erat.RestAssuredAPI.testCases.stripe.UpdateCustomerTest"/>
         </classes>
     </test>
 </suite>

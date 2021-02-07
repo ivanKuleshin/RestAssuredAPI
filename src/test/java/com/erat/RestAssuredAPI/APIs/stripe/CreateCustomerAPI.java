@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.APIs;
+package com.erat.RestAssuredAPI.APIs.stripe;
 
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -8,8 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Map;
 import java.util.Random;
 
-import static com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo.*;
-import static com.erat.RestAssuredAPI.pojoClasses.CustomerPojo.*;
+import static com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerAddressPojo.*;
+import static com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerPojo.*;
 import static io.restassured.RestAssured.*;
 
 /**

@@ -1,4 +1,4 @@
-package com.erat.RestAssuredAPI.APIs;
+package com.erat.RestAssuredAPI.APIs.stripe;
 
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import io.restassured.response.Response;

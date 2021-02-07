@@ -1,16 +1,16 @@
-package com.erat.RestAssuredAPI.testCases;
+package com.erat.RestAssuredAPI.testCases.stripe;
 
-import com.erat.RestAssuredAPI.APIs.GetCustomerAPI;
-import com.erat.RestAssuredAPI.APIs.UpdateCustomerAPI;
-import com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo;
-import com.erat.RestAssuredAPI.pojoClasses.CustomerPojo;
+import com.erat.RestAssuredAPI.APIs.stripe.GetCustomerAPI;
+import com.erat.RestAssuredAPI.APIs.stripe.UpdateCustomerAPI;
+import com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerAddressPojo;
+import com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerPojo;
 import com.erat.RestAssuredAPI.setUp.BaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo.getCustomerAddressAsNormalMap;
+import static com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerAddressPojo.getCustomerAddressAsNormalMap;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Map;

@@ -4,7 +4,7 @@ import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
 import static org.assertj.core.api.Assertions.*;
 
-import static com.erat.RestAssuredAPI.pojoClasses.CustomerAddressPojo.getCustomerAddressAsNormalMap;
+import static com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerAddressPojo.getCustomerAddressAsNormalMap;
 
 import java.util.HashMap;
 import java.util.Map;
