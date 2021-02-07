@@ -15,3 +15,5 @@ public class AmountPojo {
     private String currencyCode;
     private String value;
 }
+
+//We can use https://jsoneditoronline.org/ for easy reading json files

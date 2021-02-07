@@ -41,3 +41,5 @@ public class CustomerPojo implements Serializable {
                 testDataMap.get("phone"), testDataMap.get("preferred_locales[0]"));
     }
 }
+
+//We can use https://jsoneditoronline.org/ for easy reading json files
