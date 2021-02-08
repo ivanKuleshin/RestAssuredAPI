@@ -4,5 +4,6 @@
     <suite-file path="parallel.xml"/>
     <suite-file path="regular.xml"/>
     <suite-file path="mainSuit.xml"/>
+    <suite-file path="payPalSuit.xml"/>
 </suite-files>
 </suite>
