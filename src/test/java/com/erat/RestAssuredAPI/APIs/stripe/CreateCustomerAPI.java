@@ -1,6 +1,5 @@
 package com.erat.RestAssuredAPI.APIs.stripe;
 
-import com.erat.RestAssuredAPI.setUp.BaseTest;
 import com.erat.RestAssuredAPI.setUp.StripeBaseTest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.restassured.response.Response;

@@ -9,6 +9,10 @@ public class PayPalBaseTest extends BaseTest{
     protected static String payPalPassword;
     protected static String getPayPalTokenURI;
     protected static String payPalOrderURI;
+    protected static String accessToken;
+
+    protected final static String BASE_PATH1 = "/v1";
+    protected final static String BASE_PATH2 = "/v2";
 
     @BeforeSuite
     public void setUp() {

@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 @Slf4j
-public class DataUtil extends StripeBaseTest {
+public class DataUtil extends BaseTest {
     private static final int TWO_ROWS = 2;
     private static final int ONE_ROW = 1;
     private static final int ZERO = 0;

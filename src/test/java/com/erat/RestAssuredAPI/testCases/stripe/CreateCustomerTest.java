@@ -1,7 +1,6 @@
 package com.erat.RestAssuredAPI.testCases.stripe;
 
 import com.erat.RestAssuredAPI.APIs.stripe.CreateCustomerAPI;
-import com.erat.RestAssuredAPI.setUp.BaseTest;
 import com.erat.RestAssuredAPI.setUp.StripeBaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.restassured.response.Response;

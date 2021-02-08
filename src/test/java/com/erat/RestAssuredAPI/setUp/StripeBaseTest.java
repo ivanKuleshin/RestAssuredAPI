@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeSuite;
 public class StripeBaseTest extends BaseTest{
     protected static String customerAPIEndPoint;
     protected static String validSecretKey;
-    protected static String excelBaseDir;
 
     @BeforeSuite
     public void setUp(){
