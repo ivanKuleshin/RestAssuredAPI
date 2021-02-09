@@ -14,9 +14,7 @@ import static org.assertj.core.api.Assertions.*;
 @Slf4j
 public class PayPalTest extends PayPalBaseTest {
     private static String createdOrderId;
-
     private final static String CREATED_STATUS = "CREATED";
-
     private static final PayPalAPI payPalAPI = new PayPalAPI();
 
     @Test
