@@ -71,6 +71,21 @@ public final class RestClient extends PayPalBaseTest {
         return response;
     }
 
+    /**
+     * Returns default authorization token that gives access to all Rest Controllers
+     *
+     * @return authorization token
+     */
+    public String getAuthorizationToken() {
+        Response response = given().param("grant_type", "client_credentials").auth().preemptive().basic(properties.getProperty("payPalUserName"),
+                properties.getProperty("payPalPassword")).post(properties.getProperty("basePayPalURI") + properties.getProperty("getPayPalTokenURI"));
+
+        if (Objects.nonNull(response.jsonPath().get("access_token"))) {
+            return response.jsonPath().get("access_token");
+        }
+        throw new RuntimeException("Cannot get access token");
+    }
+
 //    public void createRequestSpecification() {
 //        client = RestAssured.given().headers(getHeaders());
 //    }
@@ -172,21 +187,6 @@ public final class RestClient extends PayPalBaseTest {
 //        gettingNewTokenCounter.set(5);
 //        return response;
 //    }
-
-    /**
-     * Returns default authorization token that gives access to all Rest Controllers
-     *
-     * @return authorization token
-     */
-    public String getAuthorizationToken() {
-        Response response = given().param("grant_type", "client_credentials").auth().preemptive().basic(properties.getProperty("payPalUserName"),
-                properties.getProperty("payPalPassword")).post(properties.getProperty("basePayPalURI") + properties.getProperty("getPayPalTokenURI"));
-
-        if (Objects.nonNull(response.jsonPath().get("access_token"))) {
-            return response.jsonPath().get("access_token");
-        }
-        throw new RuntimeException("Cannot get access token");
-    }
 
 //    private Map<String, Object> getTargetParameters(String template, Map<String, Object> paramsMap) {
 //        Map<String, Object> pathParams = new HashMap<>();
