@@ -9,19 +9,15 @@ public class PayPalBaseTest extends BaseTest{
     protected static String payPalPassword;
     protected static String getPayPalTokenURI;
     protected static String payPalOrderURI;
-    protected static String accessToken;
-
-    protected final static String BASE_PATH1 = "/v1";
-    protected final static String BASE_PATH2 = "/v2";
+    protected static String basePayPalURI;
 
     @BeforeSuite
     public void setUp() {
-        RestAssured.baseURI = properties.getProperty("basePayPalURI");
-
         payPalUserName = properties.getProperty("payPalUserName");
         payPalPassword = properties.getProperty("payPalPassword");
         payPalOrderURI = properties.getProperty("payPalOrderURI");
         getPayPalTokenURI = properties.getProperty("getPayPalTokenURI");
+        basePayPalURI = properties.getProperty("basePayPalURI");
         loggingFilePath = properties.getProperty("loggingFilePath");
 
         PropertyConfigurator.configure(loggingFilePath);

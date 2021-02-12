@@ -1,8 +1,6 @@
 package com.erat.RestAssuredAPI.cucumber.definitionSteps;
 
-import com.erat.RestAssuredAPI.cucumber.setUp.CucumberBaseTest;
 import com.erat.RestAssuredAPI.setUp.PayPalBaseTest;
-import com.erat.RestAssuredAPI.testCases.paypal.PayPalTest;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 

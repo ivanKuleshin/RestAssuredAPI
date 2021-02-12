@@ -2,6 +2,7 @@ package com.erat.RestAssuredAPI.setUp;
 
 import com.erat.RestAssuredAPI.utils.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.log4j.PropertyConfigurator;
 import org.testng.annotations.AfterSuite;
 
 import java.io.FileInputStream;

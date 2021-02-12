@@ -17,12 +17,7 @@ public class PayPalTest extends PayPalBaseTest {
     private final static String CREATED_STATUS = "CREATED";
     private static final PayPalAPI payPalAPI = new PayPalAPI();
 
-    @Test
-    public void getAuthToken() {
-        accessToken = payPalAPI.getAuthKey();
-    }
-
-    @Test(priority = 1, dependsOnMethods = "getAuthToken", dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")
+    @Test(priority = 1, dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")
     public void createOrder(Map<String, String> testDataMap) {
         Response response = payPalAPI.createOrder(testDataMap);
 
