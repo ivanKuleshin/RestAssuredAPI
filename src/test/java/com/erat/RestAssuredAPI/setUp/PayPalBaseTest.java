@@ -1,6 +1,5 @@
 package com.erat.RestAssuredAPI.setUp;
 
-import io.restassured.RestAssured;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.annotations.BeforeSuite;
 

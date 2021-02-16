@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import com.google.gson.Gson;
 
 import io.restassured.specification.RequestSpecification;
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
 import io.restassured.response.*;
 
 import static io.restassured.RestAssured.given;

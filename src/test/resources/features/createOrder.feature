@@ -3,10 +3,8 @@ Feature: Validate Crate Order feature
   to achieve some business goal
 
   Scenario Outline: Validate Create Order feature with valid detail
-    Given User gets access token
-    When User set currency code as "<currencyCode>" and value as "<currencyValue>"
-    And User verify the status is "CREATED"
+    Given User creates order with currency code "<currencyCode>", value "<currencyValue>" and intent "<intent>"
 
     Examples:
-      | currencyCode | currencyValue |
-      | USD          | 500.00        |
+      | currencyCode | currencyValue | intent  |
+      | USD          | 500.00        | CAPTURE |
