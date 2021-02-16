@@ -5,9 +5,8 @@ import com.erat.RestAssuredAPI.setUp.PayPalBaseTest;
 import com.erat.RestAssuredAPI.testCases.paypal.PayPalTest;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
+import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.PropertyConfigurator;
 
 import java.util.Map;
 
@@ -15,6 +14,7 @@ import java.util.Map;
 public class PayPalDefinitionSteps extends PayPalBaseTest{
 
     private static final PayPalTest payPalTest = new PayPalTest();
+    private static final PayPalAPI payPalAPI = new PayPalAPI();
 
     @Before
     public void setUp(){
@@ -26,8 +26,8 @@ public class PayPalDefinitionSteps extends PayPalBaseTest{
         payPalTest.createOrder(Map.of("intent", intent, "currency_code", currencyCode, "value", currencyValue));
     }
 
-    @Given("User gets order by ID")
-    public void getOrder(){
-        payPalTest.getOrder();
+    @Given("User gets order by ID {string}")
+    public void getOrder(String createdOrderId){
+        Response response = payPalAPI.getOrder(createdOrderId);
     }
 }
