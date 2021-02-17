@@ -35,7 +35,7 @@ public class TestUtil {
         softAssertions.assertAll();
     }
 
-    public void validateCustomerResponse(Map<String, Object> actualTestDataMap, Response response){
+    public void validateCustomerResponse(Map<String, String> actualTestDataMap, Response response){
         Map<String, Object> expectedTestData = getExpectedData(actualTestDataMap);
         expectedTestData.put("address", getCustomerAddressAsNormalMap(actualTestDataMap));
         actualMapContainsExpected(response.jsonPath().getMap("$"), expectedTestData);
@@ -46,10 +46,10 @@ public class TestUtil {
      * @param actualTestDataMap - input test data Map
      * @return Method returns expected data Map
      */
-    public Map<String, Object> getExpectedData(Map<String, Object> actualTestDataMap){
+    public Map<String, Object> getExpectedData(Map<String, String> actualTestDataMap){
         Map<String, Object> expectedTestData = new HashMap<>();
 
-        for(Map.Entry<String, Object> entry : actualTestDataMap.entrySet()){
+        for(Map.Entry<String, String> entry : actualTestDataMap.entrySet()){
             if (!entry.getKey().contains("[")){
                 expectedTestData.put(entry.getKey(), entry.getValue());
             }

@@ -38,9 +38,9 @@ public class CustomerAddressPojo {
         return customerAddressMap;
     }
 
-    public static Map<String, Object> getCustomerAddressAsNormalMap(Map<String, Object> testDataMap) {
+    public static Map<String, Object> getCustomerAddressAsNormalMap(Map<String, String> testDataMap) {
         Map<String, Object> normalMap = new HashMap<>();
-        for(Map.Entry<String, Object> entry : testDataMap.entrySet()){
+        for(Map.Entry<String, String> entry : testDataMap.entrySet()){
             if(entry.getKey().contains("address")){
                 normalMap.put(substringKey(entry), entry.getValue());
             }
@@ -48,7 +48,7 @@ public class CustomerAddressPojo {
         return normalMap;
     }
 
-    private static String substringKey(Map.Entry<String, Object> entry){
+    private static String substringKey(Map.Entry<String, String> entry){
         return entry.getKey().substring(entry.getKey().indexOf("s[") + 2, entry.getKey().indexOf(']'));
     }
 
@@ -57,7 +57,7 @@ public class CustomerAddressPojo {
                 "line1", "line2", "07400", "Kyiv obl.");
     }
 
-    public static CustomerAddressPojo getCustomerAddressPojoFromMap(Map<String, Object> testDataMap){
+    public static CustomerAddressPojo getCustomerAddressPojoFromMap(Map<String, String> testDataMap){
         return new CustomerAddressPojo(testDataMap.get("address[city]"), testDataMap.get("address[country]"),
                 testDataMap.get("address[line1]"), testDataMap.get("address[line2]"), testDataMap.get("address[postal_code]"),
                 testDataMap.get("address[state]"));

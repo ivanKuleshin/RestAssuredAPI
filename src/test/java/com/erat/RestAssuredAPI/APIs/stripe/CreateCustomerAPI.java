@@ -17,10 +17,10 @@ import static io.restassured.RestAssured.*;
  */
 @Slf4j
 public class CreateCustomerAPI extends StripeBaseTest {
-    public Response sendPostRequestToCreateCustomer(Map<String, Object> testDataMap) {
-        Response response = given().auth().oauth2(validSecretKey).
-                formParams(testDataMap).
-                request(RequestTypes.POST.getValue(), customerAPIEndPoint);
+    public Response sendPostRequestToCreateCustomer(Map<String, String> testDataMap) {
+        setRequestSpecification();
+        Response response = restClient.sendRequestWithSpecifications(requestSpecification.formParams(testDataMap),
+                RequestTypes.POST, customerAPIEndPoint);
 
         log.info("Requested URI: {}", baseURI + basePath + customerAPIEndPoint);
         log.info("Parameters: {}", testDataMap);
@@ -28,26 +28,13 @@ public class CreateCustomerAPI extends StripeBaseTest {
         return response;
     }
 
-    public Response sendPostRequestToCreateCustomerUsingDefaultPojo() {
-        Map<String, String> testDataMap = getCustomerAddressAsTestMap(getDefaultCustomerAddressPojo());
-
-        Response response = given().auth().oauth2(validSecretKey).
-                formParams(objectMapper.convertValue(getDefaultCustomerPojo(), new TypeReference<Map<String, String>>() {
-                })).
-                formParams(testDataMap).request(RequestTypes.POST.getValue(), customerAPIEndPoint);
-
-        log.info("Sent {} request to the: {}", RequestTypes.POST.getValue(), baseURI + basePath + customerAPIEndPoint);
-        log.info("Parameters: {}", testDataMap);
-        log.info("Response is: \n{}", response.asString().trim());
-        return response;
-    }
-
-    public Response sendPostRequestToCreateCustomerUsingPojo(Map<String, Object> testDataMap) {
-        Response response = given().auth().oauth2(validSecretKey).
-                formParams(objectMapper.convertValue(getCustomerPojoFromMap(testDataMap), new TypeReference<Map<String, String>>() {
-                })).
-                formParams(getCustomerAddressAsTestMap(getCustomerAddressPojoFromMap(testDataMap)))
-                .request(RequestTypes.POST.getValue(), customerAPIEndPoint);
+    public Response sendPostRequestToCreateCustomerUsingPojo(Map<String, String> testDataMap) {
+        setRequestSpecification();
+        Response response = restClient.sendRequestWithSpecifications(
+                requestSpecification.formParams(objectMapper.convertValue(getCustomerPojoFromMap(testDataMap),
+                        new TypeReference<Map<String, String>>() {
+                        })).
+                        formParams(getCustomerAddressAsTestMap(getCustomerAddressPojoFromMap(testDataMap))), RequestTypes.POST, customerAPIEndPoint);
 
         log.info("Requested URI: {}", baseURI + basePath + customerAPIEndPoint);
         log.info("Parameters: {}", testDataMap);
@@ -56,9 +43,10 @@ public class CreateCustomerAPI extends StripeBaseTest {
     }
 
     public Response sendPostRequestToCreateCustomerWithInvalidToken(Map<String, String> testDataMap) {
-        Response response = given().auth().oauth2(validSecretKey + new Random().nextInt(100)).
-                formParams(testDataMap).
-                request(RequestTypes.POST.getValue(), customerAPIEndPoint);
+        setRequestSpecification();
+        Response response = restClient.sendRequestWithSpecifications(given().auth().
+                oauth2(validSecretKey + new Random().nextInt(100)).
+                formParams(testDataMap), RequestTypes.POST, customerAPIEndPoint);
 
         log.info("Requested URI: {}", baseURI + basePath + customerAPIEndPoint);
         log.info("Parameters: {}", testDataMap);

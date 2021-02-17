@@ -1,40 +1,49 @@
 package com.erat.RestAssuredAPI.testCases.stripe;
 
 import com.erat.RestAssuredAPI.APIs.stripe.CreateCustomerAPI;
-import com.erat.RestAssuredAPI.setUp.StripeBaseTest;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
+import static com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerAddressPojo.getCustomerAddressAsTestMap;
+import static com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerAddressPojo.getDefaultCustomerAddressPojo;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.*;
 
-public class CreateCustomerTest extends StripeBaseTest {
-    private static final CreateCustomerAPI createCustomerAPI =  new CreateCustomerAPI();
-
+public class CreateCustomerTest extends CreateCustomerAPI {
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
-    public void createCustomerWithValidTokenUsingPojo(Map<String, Object> testDataMap) {
-        Response response = createCustomerAPI.sendPostRequestToCreateCustomerUsingPojo(testDataMap);
-        assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
+    public void createCustomerWithValidTokenUsingPojo(Map<String, String> testDataMap) {
+        Response response = sendPostRequestToCreateCustomerUsingPojo(testDataMap);
 
+        assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
         testUtil.validateCustomerResponse(testDataMap, response);
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
     public void createCustomerWithInvalidToken(Map<String, String> testDataMap) {
-        Response response = createCustomerAPI.sendPostRequestToCreateCustomerWithInvalidToken(testDataMap);
+        Response response = sendPostRequestToCreateCustomerWithInvalidToken(testDataMap).
+                then().statusCode(StatusCodes.UNAUTHORIZED.getValue()).and().extract().response();
 
-        assertThat(response.getStatusCode()).isEqualTo(StatusCodes.UNAUTHORIZED.getValue());
         String actualType = response.jsonPath().getMap("error").get("type").toString();
+
         assertThat(actualType).isEqualTo(INVALID_EXPECTED_TYPE);
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")
-    public void createCustomerWithValidToken2(Map<String, Object> testDataMap) {
-        Response response = createCustomerAPI.sendPostRequestToCreateCustomer(testDataMap);
+    public void createCustomerWithValidToken2(Map<String, String> testDataMap) {
+        Response response = sendPostRequestToCreateCustomer(testDataMap);
 
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
+    }
+
+    @Test()
+    public void createCustomerWithDefaultValues(){
+        Map<String, String> testDataMap = getCustomerAddressAsTestMap(getDefaultCustomerAddressPojo());
+        Response response = sendPostRequestToCreateCustomer(testDataMap);
+
+        assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
+        testUtil.validateCustomerResponse(testDataMap, response);
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")

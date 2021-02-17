@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.response.*;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 
 @Slf4j
 public final class RestClient extends BaseTest {
@@ -30,7 +30,7 @@ public final class RestClient extends BaseTest {
 //        updateHeaders();
 //    }
 
-    private Response sendRequestForHttpMethod(RequestTypes httpMethod, String url) {
+    private Response sendRequestForHttpMethod(RequestTypes httpMethod, String url, RequestSpecification requestSpecification) {
         Response response;
         switch (httpMethod) {
             case GET:
@@ -50,6 +50,9 @@ public final class RestClient extends BaseTest {
         }
         return response;
     }
+    public Response sendRequestWithSpecifications(RequestSpecification requestSpecification, RequestTypes httpMethod, String uri){
+        return sendRequestForHttpMethod(httpMethod, uri, requestSpecification);
+    }
 
     public Response sendRequestWithAuthorization(RequestTypes httpMethod, String uri) {
         return sendRequestWithAuthorization(httpMethod, null, uri);
@@ -64,7 +67,7 @@ public final class RestClient extends BaseTest {
         if (!Objects.isNull(entity)) {
             requestSpecification.body(entity);
         }
-        response = sendRequestForHttpMethod(httpMethod, uri);
+        response = sendRequestForHttpMethod(httpMethod, uri, requestSpecification);
         return response;
     }
 

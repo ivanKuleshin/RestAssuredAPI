@@ -36,7 +36,7 @@ public class CustomerPojo implements Serializable {
                 "+38014881337", "uk");
     }
 
-    public static CustomerPojo getCustomerPojoFromMap(Map<String, Object> testDataMap){
+    public static CustomerPojo getCustomerPojoFromMap(Map<String, String> testDataMap){
         return new CustomerPojo(testDataMap.get("name"), testDataMap.get("email"), testDataMap.get("description"),
                 testDataMap.get("phone"), testDataMap.get("preferred_locales[0]"));
     }
