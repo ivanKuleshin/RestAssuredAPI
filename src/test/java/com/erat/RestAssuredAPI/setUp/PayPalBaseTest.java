@@ -1,6 +1,5 @@
 package com.erat.RestAssuredAPI.setUp;
 
-import org.apache.log4j.PropertyConfigurator;
 import org.testng.annotations.BeforeSuite;
 
 public class PayPalBaseTest extends BaseTest{
@@ -12,13 +11,11 @@ public class PayPalBaseTest extends BaseTest{
 
     @BeforeSuite
     public void setUp() {
+        super.setUp();
         payPalUserName = properties.getProperty("payPalUserName");
         payPalPassword = properties.getProperty("payPalPassword");
         payPalOrderURI = properties.getProperty("payPalOrderURI");
         getPayPalTokenURI = properties.getProperty("getPayPalTokenURI");
         basePayPalURI = properties.getProperty("basePayPalURI");
-        loggingFilePath = properties.getProperty("loggingFilePath");
-
-        PropertyConfigurator.configure(loggingFilePath);
     }
 }

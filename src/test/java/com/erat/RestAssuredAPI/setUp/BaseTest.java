@@ -4,6 +4,7 @@ import com.erat.RestAssuredAPI.utils.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -51,11 +52,16 @@ public class BaseTest {
         try {
             FileInputStream inputStream = new FileInputStream("src/test/resources/properties/config.properties");
             properties.load(inputStream);
-
-            excelBaseDir = properties.getProperty("excelBaseDir");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @BeforeSuite
+    public void setUp(){
+        excelBaseDir = properties.getProperty("excelBaseDir");
+        loggingFilePath = properties.getProperty("loggingFilePath");
+        PropertyConfigurator.configure(loggingFilePath);
     }
 
     @AfterSuite

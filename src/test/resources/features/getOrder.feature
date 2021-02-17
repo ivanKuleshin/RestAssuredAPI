@@ -8,5 +8,3 @@ Feature: Validate Get Order feature
     Examples:
     | orderId           |
     | 8KX99565TC966531G |
-
-
