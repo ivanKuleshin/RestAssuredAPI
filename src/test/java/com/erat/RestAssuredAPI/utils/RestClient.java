@@ -3,7 +3,7 @@ package com.erat.RestAssuredAPI.utils;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.erat.RestAssuredAPI.setUp.PayPalBaseTest;
+import com.erat.RestAssuredAPI.setUp.BaseTest;
 import io.restassured.http.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,11 +15,11 @@ import io.restassured.response.*;
 import static io.restassured.RestAssured.given;
 
 @Slf4j
-public final class RestClient extends PayPalBaseTest {
+public final class RestClient extends BaseTest {
 
     private static final String BASE_URL = properties.getProperty("basePayPalURI");
     private String authorizationValue;
-    private RequestSpecification client;
+    private RequestSpecification requestSpecification;
     private final AtomicInteger gettingNewTokenCounter = new AtomicInteger(5);
     private static final String QUESTION_REGEXP = "\\?";
     private static final String QUESTION_CHAR = "?";
@@ -30,8 +30,7 @@ public final class RestClient extends PayPalBaseTest {
 //        updateHeaders();
 //    }
 
-    private Response sendRequestForHttpMethod(RequestTypes httpMethod, RequestSpecification requestSpecification,
-                                              String url) {
+    private Response sendRequestForHttpMethod(RequestTypes httpMethod, String url) {
         Response response;
         switch (httpMethod) {
             case GET:
@@ -57,15 +56,15 @@ public final class RestClient extends PayPalBaseTest {
     }
 
     public <t> Response sendRequestWithAuthorization(RequestTypes httpMethod, t entity, String uri) {
+        createRequestSpecification();
         log.info("{} {} \n {}", httpMethod, uri,
                 entity == null ? "" : new Gson().toJson(entity));
 
         Response response;
-        if (Objects.isNull(entity)) {
-            response = sendRequestForHttpMethod(httpMethod, given().contentType(ContentType.JSON).auth().oauth2(getAuthorizationToken()), uri);
-        } else {
-            response = sendRequestForHttpMethod(httpMethod, given().contentType(ContentType.JSON).auth().oauth2(getAuthorizationToken()).body(entity), uri);
+        if (!Objects.isNull(entity)) {
+            requestSpecification.body(entity);
         }
+        response = sendRequestForHttpMethod(httpMethod, uri);
         return response;
     }
 
@@ -84,9 +83,9 @@ public final class RestClient extends PayPalBaseTest {
         throw new RuntimeException("Cannot get access token");
     }
 
-//    public void createRequestSpecification() {
-//        client = RestAssured.given().headers(getHeaders());
-//    }
+    public void createRequestSpecification() {
+        requestSpecification = given().given().contentType(ContentType.JSON).auth().oauth2(getAuthorizationToken());
+    }
 
 //    public Response sendRequest(RequestTypes httpMethod, String template, Map<String, Object> paramsMap) {
 //        createRequestSpecification();
