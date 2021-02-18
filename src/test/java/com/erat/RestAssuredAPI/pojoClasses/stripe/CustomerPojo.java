@@ -2,6 +2,8 @@ package com.erat.RestAssuredAPI.pojoClasses.stripe;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,6 +41,12 @@ public class CustomerPojo implements Serializable {
     public static CustomerPojo getCustomerPojoFromMap(Map<String, String> testDataMap){
         return new CustomerPojo(testDataMap.get("name"), testDataMap.get("email"), testDataMap.get("description"),
                 testDataMap.get("phone"), testDataMap.get("preferred_locales[0]"));
+    }
+
+    public static Map<String, String> getCustomerPojoAsMap(CustomerPojo customerPojo) {
+        return new ObjectMapper().convertValue(customerPojo,
+                new TypeReference<>() {
+                });
     }
 }
 
