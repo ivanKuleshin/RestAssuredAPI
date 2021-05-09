@@ -45,7 +45,7 @@ public class CustomerPojo implements Serializable {
 
     public static Map<String, String> getCustomerPojoAsMap(CustomerPojo customerPojo) {
         return new ObjectMapper().convertValue(customerPojo,
-                new TypeReference<>() {
+                new TypeReference<Map<String, String>>() {
                 });
     }
 }
