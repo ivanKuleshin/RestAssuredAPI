@@ -11,14 +11,14 @@
         <listener class-name="Reporting.Listeners.ExtentListeners"/>
     </listeners>
 
-    <test name="ParallelTest1">
+    <test name="ParallelTest1" thread-count="2">
         <parameter name="paramFromXml" value="Hello from XML (1)"/>
         <classes>
             <class name="com.erat.RestAssuredAPI.examplesForEducation.ParallelTestsExamples.TestBrowser"/>
         </classes>
     </test>
 
-    <test name="ParallelTest2">
+    <test name="ParallelTest2" thread-count="3">
         <parameter name="paramFromXml" value="Hello from XML (2)"/>
         <classes>
             <class name="com.erat.RestAssuredAPI.examplesForEducation.ParallelTestsExamples.TestBrowser"/>

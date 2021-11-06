@@ -35,15 +35,19 @@ public final class RestClient extends BaseTest {
         switch (httpMethod) {
             case GET:
                 response = requestSpecification.get(url);
+                log.info("[GET] request was sent for URI: {}", baseURI + basePath + url);
                 break;
             case POST:
                 response = requestSpecification.post(url);
+                log.info("[POST] request was sent for URI: {}", baseURI + basePath + url);
                 break;
             case PUT:
                 response = requestSpecification.put(url);
+                log.info("[PUT] request was sent for URI: {}", baseURI + basePath + url);
                 break;
             case DELETE:
                 response = requestSpecification.delete(url);
+                log.info("[DELETE] request was sent for URI: {}", baseURI + basePath + url);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + httpMethod);
@@ -87,7 +91,7 @@ public final class RestClient extends BaseTest {
     }
 
     public void createRequestSpecification() {
-        requestSpecification = given().given().contentType(ContentType.JSON).auth().oauth2(getAuthorizationToken());
+        requestSpecification = given().contentType(ContentType.JSON).auth().oauth2(getAuthorizationToken());
     }
 
 //    public Response sendRequest(RequestTypes httpMethod, String template, Map<String, Object> paramsMap) {
