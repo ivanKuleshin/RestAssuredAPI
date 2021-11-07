@@ -14,12 +14,12 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.*;
 
-@Feature("Validate creation of user")
+@Feature("Validate creation the user")
 public class CreateCustomerTest extends CreateCustomerAPI {
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
     @Severity(SeverityLevel.CRITICAL)
-    @Story("Happy path")
+    @Story("Create customer (happy path)")
     public void createCustomerWithValidTokenUsingPojo(Map<String, String> testDataMap) {
         Response response = sendPostRequestToCreateCustomerUsingPojo(testDataMap);
 
@@ -29,7 +29,7 @@ public class CreateCustomerTest extends CreateCustomerAPI {
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
     @Severity(SeverityLevel.CRITICAL)
-    @Story("Token is invalid")
+    @Story("Create customer with invalid token")
     public void createCustomerWithInvalidToken(Map<String, String> testDataMap) {
         Response response = sendPostRequestToCreateCustomerWithInvalidToken(testDataMap).
                 then().statusCode(StatusCodes.UNAUTHORIZED.getValue()).and().extract().response();

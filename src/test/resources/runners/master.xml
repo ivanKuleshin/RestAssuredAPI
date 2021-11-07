@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="MasterSuit" verbose="1" parallel="tests">
+<suite name="MasterSuit1" verbose="1" parallel="tests">
 <suite-files>
     <suite-file path="parallel.xml"/>
     <suite-file path="mainSuit.xml"/>

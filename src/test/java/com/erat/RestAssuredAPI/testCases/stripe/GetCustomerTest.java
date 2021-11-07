@@ -4,6 +4,8 @@ import com.erat.RestAssuredAPI.APIs.stripe.CreateCustomerAPI;
 import com.erat.RestAssuredAPI.APIs.stripe.DeleteCustomerAPI;
 import com.erat.RestAssuredAPI.APIs.stripe.GetCustomerAPI;
 import com.erat.RestAssuredAPI.utils.DataUtil;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.*;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+@Feature("Validation of getting the user")
 public class GetCustomerTest extends GetCustomerAPI {
     private static final CreateCustomerAPI createCustomerAPI =  new CreateCustomerAPI();
     private static final DeleteCustomerAPI deleteCustomerAPI = new DeleteCustomerAPI();
@@ -20,6 +23,7 @@ public class GetCustomerTest extends GetCustomerAPI {
     private static final int DEFAULT_NUMBER_OF_CUSTOMERS = 10;
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
+    @Story("Get customer by id")
     public void getCustomerById(Map<String, String> testDataMap){
         Response response = createCustomerAPI.sendPostRequestToCreateCustomer(testDataMap);
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
@@ -33,6 +37,7 @@ public class GetCustomerTest extends GetCustomerAPI {
     }
 
     @Test
+    @Story("Get customer by invalid id")
     public void getCustomerByInvalidId(){
         String invalidCustomerId = String.valueOf(new Random(11111).nextInt(99999));
         Response response = sendGetRequestToRetrieveCustomer(invalidCustomerId);
@@ -43,6 +48,7 @@ public class GetCustomerTest extends GetCustomerAPI {
     }
 
     @Test
+    @Story("Get all customers")
     public void getAllCustomers(){
         Response response = sendGetRequestToRetrieveAllCustomers();
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
