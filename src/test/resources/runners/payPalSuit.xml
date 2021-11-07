@@ -2,7 +2,7 @@
 <suite name="MasterSuit" verbose="1">
 
     <listeners>
-        <listener class-name="Reporting.Listeners.ExtentListeners"/>
+        <listener class-name="reporting.Listeners.ExtentListeners"/>
     </listeners>
 
     <test name="PayPalTest">

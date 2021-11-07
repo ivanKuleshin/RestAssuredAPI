@@ -50,7 +50,7 @@ public class BaseTest {
 
     public BaseTest() {
         try {
-            FileInputStream inputStream = new FileInputStream("src/test/resources/properties/config.properties");
+            FileInputStream inputStream = new FileInputStream("src/test/resources/config.properties");
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();

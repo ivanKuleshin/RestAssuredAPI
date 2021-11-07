@@ -1,9 +1,9 @@
-package Reporting.Listeners;
+package reporting.Listeners;
 
 import java.util.Arrays;
 import java.util.Date;
 
-import Reporting.ExtentManager;
+import reporting.ExtentManager;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;

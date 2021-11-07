@@ -7,7 +7,7 @@
 <!--    </groups>-->
 
     <listeners>
-        <listener class-name="Reporting.Listeners.Listeners"/>
+        <listener class-name="reporting.Listeners.Listeners"/>
     </listeners>
 
     <test name="Test1">
