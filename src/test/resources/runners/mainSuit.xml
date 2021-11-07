@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="MainSuit" verbose="1" parallel="tests">
+<suite name="MainSuite" verbose="1" parallel="tests">
 
     <listeners>
         <listener class-name="reporting.Listeners.ExtentListeners"/>

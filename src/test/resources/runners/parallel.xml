@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="ParallelSuite1" verbose="1" parallel="tests">
+<suite name="ParallelSuite" verbose="1" parallel="tests">
 
     <groups>
         <run>
