@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Cucumber Suite" verbose="1" parallel="tests">
+
+    <test name="Cucumber test">
+        <classes>
+            <class name="com.erat.RestAssuredAPI.cucumber.runners.runCucumber"/>
+        </classes>
+    </test>
+
+</suite>

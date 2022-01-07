@@ -1,4 +1,4 @@
-Feature: Validate Crate Order feature
+Feature: Validate Create Order feature
   As a User I want to create a PayPal order
   to achieve some business goal
 

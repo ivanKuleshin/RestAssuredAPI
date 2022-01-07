@@ -19,7 +19,7 @@ public class CreateCustomerTest extends CreateCustomerAPI {
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTableWithOneSheet")
     @Severity(SeverityLevel.CRITICAL)
-    @Story("Create customer (happy path)")
+    @Story("Create customer (happy path) - getExcelDataAsTableWithOneSheet")
     public void createCustomerWithValidTokenUsingPojo(Map<String, String> testDataMap) {
         Response response = sendPostRequestToCreateCustomerUsingPojo(testDataMap);
 
@@ -39,13 +39,15 @@ public class CreateCustomerTest extends CreateCustomerAPI {
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")
+    @Story("Create customer (happy path) - getExcelDataAsTable")
     public void createCustomerWithValidToken2(Map<String, String> testDataMap) {
         Response response = sendPostRequestToCreateCustomer(testDataMap);
 
         assertThat(response.getStatusCode()).isEqualTo(StatusCodes.OK.getValue());
     }
 
-    @Test()
+    @Test
+    @Story("Create customer (happy path) - DefaultValues")
     public void createCustomerWithDefaultValues() {
         Map<String, String> testDataMap = getCustomerAddressAsTestMap(getDefaultCustomerAddressPojo());
         testDataMap.putAll(getCustomerPojoAsMap(getDefaultCustomerPojo()));
@@ -58,6 +60,7 @@ public class CreateCustomerTest extends CreateCustomerAPI {
     }
 
     @Test(dataProviderClass = DataUtil.class, dataProvider = "getExcelDataAsTable")
+    @Story("Create customer WithInvalidToken (negative) - getExcelDataAsTable")
     public void createCustomerWithInvalidToken2(Map<String, String> testDataMap) {
         createCustomerWithInvalidToken(testDataMap);
     }
