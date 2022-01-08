@@ -6,7 +6,9 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = {"src/test/resources/features/"},
         glue = {"com.erat.RestAssuredAPI.cucumber.definitionSteps"},
-        plugin = { "pretty", "html:target/cucumber-reports"})
-public class runCucumber extends AbstractTestNGCucumberTests {
+        plugin = {"pretty", "html:target/cucumber-reports",
+                "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
+        })
+public class RunCucumberTest extends AbstractTestNGCucumberTests {
 
 }

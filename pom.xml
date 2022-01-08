@@ -47,13 +47,45 @@
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                        -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
+<!--                        -Dcucumber.options="&#45;&#45;plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"-->
                     </argLine>
                 </configuration>
             </plugin>
 
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>cucumber-test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>cucumberSuit.xml</suite.xml>
+            </properties>
+            <dependencies>
+                <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber4-jvm -->
+                <dependency>
+                    <groupId>io.qameta.allure</groupId>
+                    <artifactId>allure-cucumber4-jvm</artifactId>
+                    <version>2.17.2</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>testng-test</id>
+            <dependencies>
+                <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+                <dependency>
+                    <groupId>io.qameta.allure</groupId>
+                    <artifactId>allure-testng</artifactId>
+                    <version>2.17.2</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -179,18 +211,18 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber4-jvm -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-cucumber4-jvm</artifactId>
-            <version>2.17.2</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.qameta.allure</groupId>-->
+<!--            <artifactId>allure-cucumber4-jvm</artifactId>-->
+<!--            <version>2.17.2</version>-->
+<!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.17.2</version>
-        </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.qameta.allure/allure-testng &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>io.qameta.allure</groupId>-->
+<!--            <artifactId>allure-testng</artifactId>-->
+<!--            <version>2.17.2</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 </project>
