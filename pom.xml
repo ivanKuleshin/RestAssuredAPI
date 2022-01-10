@@ -12,7 +12,6 @@
         <log4j.version>2.12.1</log4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.7</aspectj.version>
-        <suite.xml>master.xml</suite.xml>
     </properties>
 
     <build>
@@ -76,6 +75,9 @@
 
         <profile>
             <id>testng-test</id>
+            <properties>
+                <suite.xml>master.xml</suite.xml>
+            </properties>
             <dependencies>
                 <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
                 <dependency>
