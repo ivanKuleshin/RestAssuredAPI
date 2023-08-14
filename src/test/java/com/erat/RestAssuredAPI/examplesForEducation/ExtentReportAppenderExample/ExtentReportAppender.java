@@ -1,13 +1,10 @@
 package com.erat.RestAssuredAPI.examplesForEducation.ExtentReportAppenderExample;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.erat.RestAssuredAPI.setUp.BaseTest;
 import org.testng.annotations.Test;
 import reporting.Listeners.ExtentListeners;
 
-public class ExtentReportAppender {
-
-  private static final Logger logger = LoggerFactory.getLogger(ExtentListeners.class);
+public class ExtentReportAppender extends BaseTest {
 
   @Test
   public void check() {

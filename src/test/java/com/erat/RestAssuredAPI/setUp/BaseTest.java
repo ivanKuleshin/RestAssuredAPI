@@ -3,8 +3,10 @@ package com.erat.RestAssuredAPI.setUp;
 import com.erat.RestAssuredAPI.utils.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.PropertyConfigurator;
+import org.slf4j.Logger;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import reporting.Listeners.ExtentListeners;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,6 +21,7 @@ public class BaseTest {
     public static Properties properties = new Properties();
     protected static TestUtil testUtil = new TestUtil();
     protected final ObjectMapper objectMapper = new ObjectMapper();
+    protected static final Logger logger = ExtentListeners.logger;
 
     String date = new Date().toString().replace(":", "_").replace(" ", "_");
 
