@@ -3,6 +3,9 @@ package reporting.Listeners;
 import java.util.Arrays;
 import java.util.Date;
 
+import reporting.LogbackAppender.ExtentReportAppender;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import reporting.ExtentManager;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -16,6 +19,11 @@ import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
 public class ExtentListeners implements ITestListener {
+    static {
+        System.setProperty("logback.configurationFile", "src/test/resources/logback/logback.xml");
+    }
+    public static final Logger logger
+            = LoggerFactory.getLogger(ExtentListeners.class);
     static Date date = new Date();
     static String fileName = "Extent_" + date.toString().replace(":", "_").replace(" ", "_") + ".html";
 
@@ -25,6 +33,13 @@ public class ExtentListeners implements ITestListener {
 	 * To generate a unique thread whenever the report creation
 	 */
 	public static ThreadLocal<ExtentTest> testReport = new ThreadLocal<>();
+
+
+    static {
+        ExtentReportAppender appender = new ExtentReportAppender();
+        appender.start();
+        ((ch.qos.logback.classic.Logger) logger).addAppender(appender);
+    }
 
     public void onTestStart(ITestResult result) {
         ExtentTest test = extent.createTest(result.getTestClass().getName() + "     @TestCase : " + result.getMethod().getMethodName());
@@ -59,6 +74,7 @@ public class ExtentListeners implements ITestListener {
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+
     }
 
     public void onStart(ITestContext context) {
