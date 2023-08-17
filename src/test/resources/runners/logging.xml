@@ -6,7 +6,7 @@
 
     <test name="Test1">
         <classes>
-            <class name="com.erat.RestAssuredAPI.examplesForEducation.ExtentReportAppenderExample.ExtentReportAppender"/>
+            <class name="com.erat.RestAssuredAPI.examplesForEducation.ExtentReportAppenderExample.ExtentReportAppenderTest"/>
         </classes>
     </test>
 

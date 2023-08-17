@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.*;
 
-@Slf4j
 @Feature("Validate creation the user")
 public class CreateCustomerTest extends CreateCustomerAPI {
 

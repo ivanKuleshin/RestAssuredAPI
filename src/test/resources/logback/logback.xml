@@ -1,13 +1,16 @@
 <configuration>
-    <!-- Define the file appender -->
-    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
-        <file>log/app.log</file> <!-- Specify the file path -->
+    <appender name="rollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>log/log-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
         <encoder>
-            <pattern>%d [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Define the console appender -->
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d [%thread] %-5level %logger{36} - %msg%n</pattern>
@@ -20,9 +23,9 @@
         </layout>
     </appender>
 
-    <!-- Set the root logger -->
-    <root level="debug">
-        <appender-ref ref="fileAppender"/>
+    <root level="info">
+        <appender-ref ref="rollingFileAppender"/>
         <appender-ref ref="consoleAppender"/>
+        <appender-ref ref="extentReportAppender"/>
     </root>
 </configuration>

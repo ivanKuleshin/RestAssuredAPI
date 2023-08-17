@@ -5,16 +5,16 @@ import ch.qos.logback.core.AppenderBase;
 import com.aventstack.extentreports.ExtentTest;
 import reporting.Listeners.ExtentListeners;
 
+import java.util.Optional;
+
 public class ExtentReportAppender extends AppenderBase<ILoggingEvent> {
 
   @Override
   protected void append(ILoggingEvent event) {
-    if (event != null) {
-      String logMessage = event.getFormattedMessage();
-      ExtentTest extentTest = ExtentListeners.testReport.get();
-      if (extentTest != null) {
-        extentTest.info(logMessage);
-      }
-    }
+    Optional<ILoggingEvent> eventOptional = Optional.ofNullable(event);
+    Optional<ExtentTest> extentTestOptional = Optional.ofNullable(ExtentListeners.testReport.get());
+
+    eventOptional.flatMap(ILoggingEvent -> extentTestOptional)
+            .ifPresent(extentTest -> extentTest.info(event.getFormattedMessage()));
   }
 }
