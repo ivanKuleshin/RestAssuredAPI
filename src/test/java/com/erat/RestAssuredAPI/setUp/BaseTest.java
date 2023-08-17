@@ -5,17 +5,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
 public class BaseTest {
+
     protected static final String INVALID_EXPECTED_TYPE = "invalid_request_error";
     protected static String loggingFilePath;
     protected static String excelBaseDir;
-
     public static Properties properties = new Properties();
     protected static TestUtil testUtil = new TestUtil();
     protected final ObjectMapper objectMapper = new ObjectMapper();

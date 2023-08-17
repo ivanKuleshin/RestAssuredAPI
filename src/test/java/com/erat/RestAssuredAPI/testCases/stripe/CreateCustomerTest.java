@@ -4,6 +4,7 @@ import com.erat.RestAssuredAPI.APIs.stripe.CreateCustomerAPI;
 import com.erat.RestAssuredAPI.utils.DataUtil;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
 
 import static com.erat.RestAssuredAPI.pojoClasses.stripe.CustomerAddressPojo.getCustomerAddressAsTestMap;

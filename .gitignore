@@ -3,3 +3,4 @@ logs
 reports
 allure-results
 .allure
+.idea
