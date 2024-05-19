@@ -3,4 +3,7 @@ logs
 reports
 allure-results
 .allure
-.idea
+.idea/
+*.iml
+*.iws
+*.log

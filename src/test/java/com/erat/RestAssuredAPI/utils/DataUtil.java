@@ -21,7 +21,7 @@ public class DataUtil extends StripeBaseTest {
      * @return - this DataProvider returns a List of Maps with testing data
      */
     @DataProvider(name = "getExcelDataAsTable")
-    public Object[] getExcelDataAsTable(Method method, Class<?> aClass) {
+    public static Object[] getExcelDataAsTable(Method method, Class<?> aClass) {
         ExcelReader excelReader = new ExcelReader(excelBaseDir + aClass.getSimpleName() + "Data.xlsx");
 
         String sheetName = method.getName();

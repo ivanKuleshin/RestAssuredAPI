@@ -35,11 +35,11 @@ public final class RestClient extends BaseTest {
         switch (httpMethod) {
             case GET:
                 response = requestSpecification.get(url);
-                log.info("[GET] request was sent for URI: {}", baseURI + basePath + url);
+                log.info("[GET] request was sent for URI: {}", url);
                 break;
             case POST:
                 response = requestSpecification.post(url);
-                log.info("[POST] request was sent for URI: {}", baseURI + basePath + url);
+                log.info("[POST] request was sent for URI: {}", url);
                 break;
             case PUT:
                 response = requestSpecification.put(url);
@@ -52,6 +52,8 @@ public final class RestClient extends BaseTest {
             default:
                 throw new IllegalStateException("Unexpected value: " + httpMethod);
         }
+
+        log.info("Response: {}", response.asPrettyString());
         return response;
     }
     public Response sendRequestWithSpecifications(RequestSpecification requestSpecification, RequestTypes httpMethod, String uri){
