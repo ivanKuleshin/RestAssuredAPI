@@ -2,8 +2,18 @@
 
 ## Overview
 
-This project is a Java-based API testing framework that utilizes various technologies and libraries to facilitate API testing. It includes dependencies for logging, test execution, and reporting, ensuring a robust and maintainable testing environment.
+This project leverages the following main technologies:
 
+- **Maven**: For build automation and dependency management.
+- **TestNG**: For test execution and management.
+- **Cucumber**: For behavior-driven development (BDD) testing.
+- **Rest-Assured**: For testing RESTful APIs.
+- **Log4j, SLF4J, Logback**: For logging.
+- **Allure, ExtentReports**: For generating comprehensive test reports.
+- **Jackson, JSON**: For JSON data handling.
+- **Apache POI**: For Excel file manipulation.
+- **AspectJ**: For aspect-oriented programming.
+- **Lombok**: For reducing boilerplate code.
 ## Technologies and Libraries
 
 ### Build and Dependency Management
